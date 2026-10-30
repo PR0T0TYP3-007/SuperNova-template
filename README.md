@@ -19,6 +19,30 @@ Plain HTML, CSS and JavaScript. No build step.
 | Orders | `orders.html` |
 | Flights (coming soon) | `flights.html` |
 
+Ordering food: pick Crunchies or Roots → pick an outlet → menu → bag → checkout step 1 (contact and delivery details) → step 2 (review and pay) → tracking.
+
+## Admin
+
+Open `admin/index.html` (not linked from the public site). Switch accounts in the top bar:
+
+| Account | Role | Can see |
+| --- | --- | --- |
+| Augustus, Covenant Chukwudi | Admin | Everything |
+| Crunchies Group | Viewer (read only) | Overview and the attribution report |
+
+| Page | What it's for |
+| --- | --- |
+| Overview | Orders, sales, net after refunds, average food order, refund rate, delivery time and customers vs the previous period; what needs attention; live orders by step; sales by restaurant; busy hours; top items; outlet performance; busiest hostels |
+| Orders | Every order with filters and a detail drawer: move an order to its next step, mark it done, cancel, refund |
+| Requests | Price market runs and send the quote, build flight shortlists, count laundry at pickup and move it along |
+| Issues & refunds | Resolve reported problems; refunds over the limit need a second admin (not the one who asked); payment disputes |
+| Attribution report | Supernova food orders sent to Crunchies Group by day, restaurant and outlet, net of refunds, with CSV export |
+| Outlets & menu | Open or close outlets, switch items off per outlet, popularity ranking |
+| Audit log | Every admin action, who and when (append-only) |
+| Settings | Sandbox autopilot, refund approval limit, fees, reset demo data |
+
+Admin data is a deterministic 60-day sample history plus real orders placed in the same browser. Quotes, shortlists, status changes, refunds and outlet or menu switches made in admin show up on the student's pages. Turn **autopilot** off in Settings to drive every step by hand. In production, admin needs real sign-in with 2FA and its own subdomain, as the design document says.
+
 ## Run locally
 
 ```bash

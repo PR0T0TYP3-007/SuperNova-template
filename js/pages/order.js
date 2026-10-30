@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
       : p.awaitingPayment ? 'Your quote is ready. Have a look and pay to start the shopping.'
       : kind === 'flight' && !o.paidAt ? 'Our travel team is hunting for deals. You\'ll hear back within a few hours.'
       : kind === 'market' && !o.paidAt ? 'Our partners are pricing your list. Hang tight.'
-      : `${p.step.note}. About ${remaining} min to go.`;
+      : SN.settings.get().autopilot ? `${p.step.note}. About ${remaining} min to go.` : `${p.step.note}.`;
     const pct = p.index < 0 ? 0 : p.index / (flow.length - 1);
 
     const status = h('section', { class: 'tstatus', 'aria-live': 'polite' },
@@ -141,7 +141,9 @@ document.addEventListener('DOMContentLoaded', () => {
       : h('a', { class: 'btn btn--primary btn--block', href: 'laundry.html#book' }, icon('refresh'), 'Book another pickup');
 
     return h('aside', { class: 'panel tdetail' },
-      o.issue ? h('div', { class: 'alert alert--info' }, icon('alert'), h('div', null, h('strong', { text: 'Problem reported. ' }), `We're looking into your "${o.issue.type}" report and will email you within a few hours.`)) : null,
+      o.issue && o.issue.state === 'resolved'
+        ? h('div', { class: 'alert alert--info' }, icon('check'), h('div', null, h('strong', { text: 'Sorted. ' }), o.refund && o.refund.state === 'approved' ? `We refunded ${money(o.refund.amount)} to the way you paid. ` : '', o.issue.reply || `Thanks for telling us about the ${o.issue.type.toLowerCase()}.`))
+        : o.issue ? h('div', { class: 'alert alert--info' }, icon('alert'), h('div', null, h('strong', { text: 'Problem reported. ' }), `We're looking into your "${o.issue.type}" report and will email you within a few hours.`)) : null,
       h('div', { class: 'panel__head' }, h('h2', { class: 'panel__title', text: 'Details' }), h('span', { class: 'muted', text: when(o.createdAt) })),
       h('div', { class: 'tdetail__addr' }, icon('pin'),
         h('div', null, h('strong', { text: SN.ui.addrLine(a) }), h('span', { text: a.campus }),

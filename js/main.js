@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const [k, id] = btn.dataset.add.split(':');
     const it = SN.item(k, id);
     if (!it) return;
+    // No outlet picked yet: choose one first, then the item opens on its menu.
+    if (!SN.outlets.get(k)) { location.href = `kitchen.html?k=${k}&item=${encodeURIComponent(id)}`; return; }
     const opts = (it.groups || []).filter(g => g.type === 'one').map(g => `${g.id}:${g.options[0].id}`);
     if (!SN.cart.add(k, id, opts, 1)) return;
     SN.ui.bump();

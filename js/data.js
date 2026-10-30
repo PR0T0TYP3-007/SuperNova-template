@@ -31,6 +31,22 @@ SN.KITCHENS = {
   }
 };
 
+// Outlets: each kitchen has several. The student picks one before the menu;
+// the bag belongs to that outlet. PLACEHOLDER names and areas. `soldOut` is
+// the outlet's own out-of-stock list on top of the kitchen-wide one.
+SN.OUTLETS = {
+  crunchies: [
+    { id: 'cr-northgate', name: 'Northgate Road', area: 'Opposite Northgate University main gate', hours: '10:00 – 23:00', eta: '20–30 min', campuses: ['northgate'], soldOut: ['wings-basket'] },
+    { id: 'cr-citymall', name: 'City Mall', area: 'City Mall food court, ground floor', hours: '10:00 – 22:00', eta: '30–45 min', campuses: ['lagoon', 'northgate'], soldOut: [] },
+    { id: 'cr-crest', name: 'Crest Junction', area: 'Crest Junction, beside the filling station', hours: '11:00 – 22:00', eta: '25–35 min', campuses: ['crestfield'], soldOut: ['pizza'] }
+  ],
+  roots: [
+    { id: 'ro-market', name: 'Market Square', area: 'Market Square, by the clock tower', hours: '09:00 – 21:00', eta: '35–50 min', campuses: ['northgate', 'crestfield'], soldOut: [] },
+    { id: 'ro-lagoon', name: 'Lagoon Front', area: 'Lagoon Front, Marina Road', hours: '09:00 – 21:00', eta: '30–40 min', campuses: ['lagoon'], soldOut: ['pepper-soup'] },
+    { id: 'ro-garden', name: 'Garden Avenue', area: 'Garden Avenue, off Hospital Road', hours: '10:00 – 20:00', eta: '40–55 min', campuses: ['crestfield'], soldOut: ['efo'] }
+  ]
+};
+
 // Option groups: `one` is a required single choice, `many` is optional extras.
 const SPICE = { id: 'spice', name: 'How hot?', type: 'one', options: [
   { id: 'mild', label: 'Mild', price: 0 },

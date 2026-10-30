@@ -27,7 +27,13 @@ document.documentElement.classList.add('js');
     ${S('pin', st('M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z') + '<circle cx="12" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="2.2"/>')}
     ${S('chart', st('M4 20V10M10 20V4M16 20v-7M22 20H2'))}
     ${S('menu', st('M4 7h16M4 12h16M4 17h16'))}
-    ${S('share', st('M12 3v12M8 7l4-4 4 4') + st('M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1'))}
+    ${S('home', st('M3 11 12 3l9 8') + st('M5 10v10h5v-6h4v6h5V10'))}
+    ${S('user', '<circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2.2"/>' + st('M4 21c.8-4 4-6.5 8-6.5s7.2 2.5 8 6.5'))}
+    ${S('arrowup', st('M12 19V5M6 11l6-6 6 6'))}
+    ${S('arrowdown', st('M12 5v14M6 13l6 6 6-6'))}
+    ${S('download', st('M12 4v11M7 10l5 5 5-5M5 20h14'))}
+    ${S('users', '<circle cx="9" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="2.2"/>' + st('M2.5 20c.5-3.5 3.2-5.5 6.5-5.5s6 2 6.5 5.5M16 4.8a3.5 3.5 0 0 1 0 6.4M18 14.6c2 .7 3.2 2.6 3.5 5.4'))}
+    ${S('share',st('M12 3v12M8 7l4-4 4 4') + st('M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1'))}
     ${S('plussq', '<rect x="3.5" y="3.5" width="17" height="17" rx="4" fill="none" stroke="currentColor" stroke-width="2.2"/>' + st('M12 8v8M8 12h8'))}
     ${S('basket',st('M3 10h18l-2 10H5L3 10Z') + st('M8 10l3-6M16 10l-3-6M9 14v3M15 14v3M12 14v3'))}
     ${S('shirt', st('M8 3 4 6l2 4 2-1v12h8V9l2 1 2-4-4-3a4 4 0 0 1-8 0Z'))}
@@ -53,7 +59,7 @@ document.documentElement.classList.add('js');
       else if (k === 'data') Object.entries(v).forEach(([dk, dv]) => { el.dataset[dk] = dv; });
       else el.setAttribute(k, v === true ? '' : v);
     }
-    kids.flat().forEach(c => { if (c != null && c !== false) el.append(c instanceof Node ? c : String(c)); });
+    kids.flat(Infinity).forEach(c => { if (c != null && c !== false) el.append(c instanceof Node ? c : String(c)); });
     return el;
   }
   function icon(name, cls = 'i') {
@@ -66,7 +72,9 @@ document.documentElement.classList.add('js');
     return svg;
   }
   const money = n => '₦' + Math.round(n).toLocaleString('en-NG');
-  const img = name => `assets/img/${name}.webp`;
+  // Pages in subfolders (admin/) set <html data-base="../"> so paths still resolve.
+  const BASE = document.documentElement.dataset.base || '';
+  const img = name => `${BASE}assets/img/${name}.webp`;
   const param = k => new URLSearchParams(location.search).get(k);
   const kitchenOr = k => (SN.KITCHENS[k] ? k : null);
   const when = ts => {
@@ -86,7 +94,15 @@ document.documentElement.classList.add('js');
 
   // ---- Header ---------------------------------------------------------------
   const page = document.body.dataset.page;
-  const NAV = [['home', 'index.html', 'Home'], ['food', 'food.html', 'Food'], ['market', 'market.html', 'Market runs'], ['laundry', 'laundry.html', 'Dry cleaning'], ['flights', 'flights.html', 'Flights'], ['orders', 'orders.html', 'Orders']];
+  // [id, href, desktop label, short mobile label, icon]
+  const NAV = [
+    ['home', 'index.html', 'Home', 'Home', 'home'],
+    ['food', 'food.html', 'Food', 'Food', 'flame'],
+    ['market', 'market.html', 'Market runs', 'Market', 'basket'],
+    ['laundry', 'laundry.html', 'Dry cleaning', 'Laundry', 'shirt'],
+    ['flights', 'flights.html', 'Flights', 'Flights', 'plane'],
+    ['orders', 'orders.html', 'Orders', 'Orders', 'receipt']
+  ];
   const navLinks = () => NAV.map(([id, href, label]) => h('a', { href, 'aria-current': id === page ? 'page' : null, text: label }));
 
   function renderChrome() {
@@ -95,13 +111,19 @@ document.documentElement.classList.add('js');
     const n = h('span', { class: 'basket__n', 'data-basket-n': true, 'data-zero': 'true', text: '0' });
     const basket = h('a', { class: 'basket', href: 'cart.html', 'data-basket': true, 'aria-current': page === 'cart' ? 'page' : null },
       icon('bag'), h('span', { class: 'basket__word', text: 'Bag' }), n);
-    const burger = h('details', { class: 'burger' },
-      h('summary', { 'aria-label': 'Open menu' }, icon('menu')),
-      h('div', { class: 'burger__panel' }, navLinks(), h('a', { href: 'cart.html', text: 'Your bag' }), h('a', { href: '#', text: 'Log in' })));
     host.append(h('div', { class: 'wrap chrome__in' },
       logo('mark'),
       h('nav', { class: 'nav', 'aria-label': 'Main' }, navLinks()),
-      h('div', { class: 'chrome__end' }, h('a', { class: 'btn btn--sm btn--quiet chrome__login', href: '#', text: 'Log in' }), basket, burger)));
+      h('div', { class: 'chrome__end' },
+        h('a', { class: 'btn btn--sm btn--quiet chrome__login', href: '#', text: 'Log in' }),
+        h('a', { class: 'chrome__me', href: '#', 'aria-label': 'Log in' }, icon('user')),
+        basket)));
+
+    // Phones and tablets: every main section in a bottom tab bar, no hamburger.
+    document.body.append(h('nav', { class: 'tabbar', 'aria-label': 'Main' },
+      NAV.map(([id, href, , short, ic]) => h('a', { class: 'tabbar__item', href, 'aria-current': id === page ? 'page' : null },
+        h('span', { class: 'tabbar__icon' }, icon(ic)), h('span', { class: 'tabbar__label', text: short })))));
+    document.body.classList.add('has-tabbar');
 
     const sync = () => {
       const c = SN.cart.countAll();
@@ -112,8 +134,6 @@ document.documentElement.classList.add('js');
     sync();
     SN.onChange(sync);
 
-    burger.querySelectorAll('a').forEach(a => a.addEventListener('click', () => burger.removeAttribute('open')));
-    document.addEventListener('click', e => { if (burger.open && !burger.contains(e.target)) burger.removeAttribute('open'); });
     const onScroll = () => { host.dataset.scrolled = String(scrollY > 8); };
     addEventListener('scroll', onScroll, { passive: true });
     onScroll();

@@ -6,7 +6,7 @@
 // a stale copy is never served after a deploy. When the real API exists, its
 // requests (and anything authenticated, checkout or payment) must bypass the
 // cache entirely: see the `api/` check below.
-const VERSION = 'sn-v1';
+const VERSION = 'sn-v2';
 const SHELL = [
   './', './index.html', './food.html', './market.html', './laundry.html', './flights.html', './orders.html', './offline.html',
   './assets/favicon.svg', './assets/icons/icon-192.png', './manifest.webmanifest'

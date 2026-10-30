@@ -1,10 +1,11 @@
-// Shared hostel address fields: university, hostel, block, room (optional), phone.
-// Used by food checkout, market runs and dry-cleaning pickups so every
-// service asks for the address the same way and remembers it for the tab.
+// Shared delivery details: optional contact block (name, email), then
+// university, hostel, block, room (optional) and phone. Used by food
+// checkout, market runs, dry cleaning and flights so every service asks the
+// same way and remembers the answers for the tab.
 (() => {
   const { h, icon } = SN.ui;
 
-  SN.addressForm = (idPrefix = '') => {
+  SN.addressForm = (idPrefix = '', { contact = false } = {}) => {
     const saved = SN.address.get() || {};
     const id = n => idPrefix + n;
     const err = n => h('p', { class: 'field__err', id: `${id(n)}-err`, 'aria-live': 'polite' });
@@ -30,9 +31,13 @@
 
     const blockSel = select('block', 'Block', SN.BLOCKS.map(b => [b, `Block ${b}`]), saved.block);
     const room = h('input', { id: id('room'), name: 'room', type: 'text', inputmode: 'numeric', maxlength: 8, placeholder: 'e.g. 214', value: saved.room || '', 'aria-describedby': `${id('room')}-err` });
+    const name = h('input', { id: id('name'), name: 'name', type: 'text', autocomplete: 'name', maxlength: 60, placeholder: 'e.g. Ada Okafor', value: saved.name || '', 'aria-describedby': `${id('name')}-err` });
+    const email = h('input', { id: id('email'), name: 'email', type: 'email', inputmode: 'email', autocomplete: 'email', placeholder: 'you@university.edu.ng', value: saved.email || '', 'aria-describedby': `${id('email')}-err` });
     const phone = h('input', { id: id('phone'), name: 'phone', type: 'tel', inputmode: 'tel', autocomplete: 'tel-national', placeholder: '0803 000 0000', value: saved.phone || '', 'aria-describedby': `${id('phone')}-err`, required: true });
 
     const el = h('div', { class: 'form-grid' },
+      contact ? field('name', 'Full name', name, { wide: true }) : null,
+      contact ? field('email', 'Email', email, { wide: true, hint: 'Your receipt and order updates go here.' }) : null,
       field('campus', 'University', campusSel, { wide: true }),
       field('hostel', 'Hostel', hostelWrap, { wide: true }),
       field('block', 'Block', blockSel),
@@ -51,6 +56,9 @@
     function validate() {
       const v = n => get(n).value.trim();
       const checks = [
+        ...(contact ? [
+          ['name', v('name').length > 1 ? '' : 'Tell us your name.'],
+          ['email', /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v('email')) ? '' : 'That email looks off.']] : []),
         ['campus', v('campus') ? '' : 'Pick your university.'],
         ['hostel', v('hostel') ? '' : 'Pick your hostel.'],
         ['block', v('block') ? '' : 'Pick a block.'],
@@ -66,6 +74,7 @@
     function value() {
       const c = SN.CAMPUSES.find(x => x.id === get('campus').value);
       const a = { campusId: c.id, campus: c.name, hostel: get('hostel').value, block: get('block').value, room: room.value.trim(), phone: digits(phone.value) };
+      if (contact) Object.assign(a, { name: name.value.trim(), email: email.value.trim() });
       SN.address.set({ ...SN.address.get(), ...a });
       return a;
     }

@@ -1,4 +1,5 @@
-// Kitchen menu: one kitchen at a time, adding only to that kitchen's bag.
+// Kitchen menu: pick an outlet first, then browse that outlet's menu. Items
+// go only into this kitchen's bag, and the bag belongs to the chosen outlet.
 document.addEventListener('DOMContentLoaded', () => {
   const { h, icon, money, img, param, toast, bump, reveal } = SN.ui;
   const k = SN.ui.kitchenOr(param('k'));
@@ -11,7 +12,19 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.dataset.kitchen = k;
   document.title = `${K.name} — Supernova`;
 
-  const ranked = M.items.filter(i => !i.soldOut).sort((a, b) => b.orders - a.orders);
+  // ---- Outlet gate -----------------------------------------------------------
+  const outlet = SN.outlets.list(k).find(x => x.id === param('o') && !x.closed);
+  const deepItem = param('item');
+  if (!outlet || param('pick')) { pickOutlet(); return; }
+  const saved = SN.outlets.get(k);
+  if (saved !== outlet.id) {
+    // Switching outlets with a full bag empties it: each outlet cooks its own.
+    if (saved && SN.cart.count(k)) { pickOutlet(); confirmSwitch(outlet.id); return; }
+    SN.outlets.set(k, outlet.id);
+  }
+  const avail = id => SN.outlets.available(k, outlet.id, id);
+
+  const ranked = M.items.filter(i => avail(i.id)).sort((a, b) => b.orders - a.orders);
   const rankOf = id => ranked.findIndex(i => i.id === id) + 1;
   const defaults = it => (it.groups || []).filter(g => g.type === 'one').map(g => `${g.id}:${g.options[0].id}`);
 
@@ -29,6 +42,67 @@ document.addEventListener('DOMContentLoaded', () => {
     if (SN.cart.add(k, it.id, [], 1)) added(it, 1);
   }
 
+  // ---- Outlet picker -----------------------------------------------------------
+  function goTo(id) {
+    location.href = `kitchen.html?k=${k}&o=${id}${deepItem ? `&item=${encodeURIComponent(deepItem)}` : ''}`;
+  }
+  function choose(id) {
+    const current = SN.outlets.get(k);
+    if (current && current !== id && SN.cart.count(k)) return confirmSwitch(id);
+    SN.outlets.set(k, id);
+    goTo(id);
+  }
+  function confirmSwitch(id) {
+    const from = SN.outlets.find(SN.outlets.get(k));
+    const to = SN.outlets.find(id);
+    const n = SN.cart.count(k);
+    const dlg = h('dialog', { class: 'sheet sheet--plain', 'aria-labelledby': 'sw-t', 'data-kitchen': k },
+      h('div', { class: 'report' },
+        h('h2', { class: 'h3', id: 'sw-t' }, 'Switch to ', h('em', { text: to.name }), '?'),
+        h('p', { class: 'muted', text: `Your ${K.name} bag has ${n} item${n === 1 ? '' : 's'} from ${from.name}. Each outlet cooks its own orders, so switching empties the bag.` }),
+        h('div', { class: 'report__acts' },
+          h('button', { class: 'btn btn--quiet', type: 'button', onclick: () => { dlg.close(); goTo(from.id); } }, `Keep ${from.name}`),
+          h('button', { class: 'btn btn--loud', type: 'button', onclick: () => { SN.cart.clear(k); SN.outlets.set(k, id); goTo(id); } }, 'Empty bag and switch'))));
+    dlg.addEventListener('close', () => dlg.remove());
+    document.body.append(dlg);
+    dlg.showModal();
+  }
+  function pickOutlet() {
+    document.querySelector('[data-catnav]').hidden = true;
+    document.querySelector('[data-menu]').hidden = true;
+    const current = SN.outlets.get(k);
+    const campus = SN.address.get()?.campusId;
+    const list = SN.outlets.list(k).sort((a, b) => (b.campuses.includes(campus) - a.campuses.includes(campus)));
+    const card = o => {
+      const near = campus && o.campuses.includes(campus);
+      const mine = current === o.id && SN.cart.count(k);
+      return h('article', { class: `ocard2 ${o.closed ? 'is-closed' : ''}`, 'data-reveal': true },
+        h('div', { class: 'ocard2__top' },
+          h('span', { class: 'ocard2__pin' }, icon('pin')),
+          near ? h('span', { class: 'spill spill--done' }, icon('check'), 'Closest to you') : null,
+          mine ? h('span', { class: 'spill spill--live' }, icon('bag'), 'Your bag is here') : null,
+          o.closed ? h('span', { class: 'spill spill--off', text: 'Closed now' }) : null),
+        h('h2', { class: 'ocard2__name', text: o.name }),
+        h('p', { class: 'ocard2__area', text: o.area }),
+        h('ul', { class: 'meta-row' }, h('li', null, icon('clock'), o.eta), h('li', null, icon('star'), o.hours)),
+        h('button', { class: `btn ${o.closed ? '' : 'btn--loud'} btn--block`, type: 'button', disabled: o.closed, onclick: () => choose(o.id) },
+          o.closed ? 'Closed right now' : mine ? 'Back to my bag' : 'Order from here', o.closed ? null : icon('arrow')));
+    };
+    const hero = document.querySelector('[data-khero]');
+    hero.classList.add('khero--pick');
+    hero.replaceChildren(
+      h('div', { class: 'khero__sky', 'aria-hidden': 'true' }),
+      h('div', { class: 'khero__copy' },
+        h('a', { class: 'back', href: 'food.html' }, icon('back'), 'All kitchens'),
+        h('p', { class: 'khero__kicker' }, h('span', { class: `dot dot--${k}` }), `${K.name} · step 1 of 2`),
+        h('h1', { class: 'khero__name khero__name--sm' }, 'Which ', h('em', { text: K.name }), '?'),
+        h('p', { class: 'khero__tag', text: 'Pick the outlet closest to you. Each one cooks and sends its own orders.' })),
+      h('figure', { class: 'frame khero__frame' }, h('img', { src: K.hero, alt: K.alt, width: 1100, height: 733 })));
+    const grid = h('section', { class: 'wrap opick', 'aria-label': `${K.name} outlets` }, list.map(card));
+    hero.closest('section').after(grid);
+    reveal(grid);
+  }
+
   // ---- Hero ----------------------------------------------------------------
   document.querySelector('[data-khero]').append(
     h('div', { class: 'khero__sky', 'aria-hidden': 'true' }),
@@ -36,11 +110,13 @@ document.addEventListener('DOMContentLoaded', () => {
       h('a', { class: 'back', href: 'food.html' }, icon('back'), 'All kitchens'),
       h('p', { class: 'khero__kicker' }, h('span', { class: `dot dot--${k}` }), 'You\'re ordering from'),
       h('h1', { class: 'khero__name', text: K.name }),
+      h('p', { class: 'khero__outlet' }, icon('pin'), h('span', null, h('b', { text: outlet.name }), ` · ${outlet.area}`),
+        h('a', { href: `kitchen.html?k=${k}&pick=1` }, 'Change')),
       h('p', { class: 'khero__tag', text: K.tagline }),
       h('ul', { class: 'meta-row meta-row--light' },
-        h('li', null, icon('clock'), K.eta),
+        h('li', null, icon('clock'), outlet.eta),
         h('li', null, icon('bike'), `${money(K.fee)} delivery`),
-        h('li', null, icon('star'), `Open ${K.hours}`)),
+        h('li', null, icon('star'), `Open ${outlet.hours}`)),
       h('a', { class: 'switch', href: `kitchen.html?k=${other}` }, `Switch to ${O.name}`, icon('arrow'))),
     h('figure', { class: 'frame khero__frame' }, h('img', { src: K.hero, alt: K.alt, width: 1100, height: 733 })),
     h('p', { class: 'khero__note' }, icon('bag'), `${K.name} has its own bag. Anything from ${O.name} goes in a separate one.`));
@@ -69,8 +145,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const row = it => {
     const r = rankOf(it.id);
-    return h('article', { class: 'irow', 'data-reveal': true, 'data-sold': it.soldOut ? 'true' : null, 'data-search': `${it.name} ${it.desc}`.toLowerCase() },
-      it.soldOut ? null : h('button', { class: 'hit', type: 'button', 'aria-label': `${it.name}, ${money(it.price)}. Choose options`, onclick: () => openSheet(it) }),
+    const sold = !avail(it.id);
+    return h('article', { class: 'irow', 'data-reveal': true, 'data-sold': sold ? 'true' : null, 'data-search': `${it.name} ${it.desc}`.toLowerCase() },
+      sold ? null : h('button', { class: 'hit', type: 'button', 'aria-label': `${it.name}, ${money(it.price)}. Choose options`, onclick: () => openSheet(it) }),
       h('div', { class: 'irow__text' },
         r && r <= 5 ? h('span', { class: 'irow__pop' }, icon('flame'), `Popular · #${r}`) : null,
         h('h3', { class: 'irow__name', text: it.name }),
@@ -78,8 +155,8 @@ document.addEventListener('DOMContentLoaded', () => {
         h('p', { class: 'price', text: money(it.price) })),
       h('div', { class: 'irow__media' },
         h('img', { src: img(it.img), alt: '', width: 300, height: 300, loading: 'lazy' }),
-        it.soldOut
-          ? h('span', { class: 'irow__sold', text: 'Sold out today' })
+        sold
+          ? h('span', { class: 'irow__sold', text: 'Sold out here today' })
           : h('button', { class: 'add', type: 'button', 'aria-label': `Add ${it.name}`, onclick: () => quickAdd(it) }, icon('plus'))));
   };
 
@@ -127,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---- Item sheet ----------------------------------------------------------
   function openSheet(it) {
-    if (it.soldOut) return;
+    if (!avail(it.id)) return;
     const sel = new Set(defaults(it));
     let qty = 1;
     const addBtn = h('button', { class: 'btn btn--loud btn--block', type: 'submit' });
@@ -191,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!n) return;
     bar.replaceChildren(h('a', { class: 'bagbar__in wrap', href: `cart.html?k=${k}`, 'data-kitchen': k },
       h('span', { class: 'bagbar__n', text: String(n) }),
-      h('span', { class: 'bagbar__k' }, h('small', { text: 'Your bag' }), `${K.name}`),
+      h('span', { class: 'bagbar__k' }, h('small', { text: `Your bag · ${outlet.name}` }), `${K.name}`),
       h('span', { class: 'bagbar__t', text: money(SN.cart.totals(k).subtotal) }),
       h('span', { class: 'bagbar__go' }, 'View bag', icon('arrow'))));
   };

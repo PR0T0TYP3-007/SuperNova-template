@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         h('div', { class: 'panel bag__lines' },
           h('div', { class: 'panel__head' },
             h('h2', { class: 'panel__title' }, tag(k), `${SN.cart.count(k)} item${SN.cart.count(k) === 1 ? '' : 's'}`),
+            SN.outlets.get(k) ? h('a', { class: 'bag__outlet', href: `kitchen.html?k=${k}&pick=1` }, icon('pin'), `From ${SN.outlets.find(SN.outlets.get(k)).name}`) : null,
             // Two-step empty: the first tap arms it, the second clears.
             h('button', { class: 'linkish', type: 'button', onclick: e => {
               const b = e.currentTarget;
@@ -69,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
               setTimeout(() => { if (b.isConnected) { delete b.dataset.armed; b.textContent = 'Empty bag'; } }, 3000);
             } }, 'Empty bag')),
           list,
-          h('a', { class: 'addmore', href: `kitchen.html?k=${k}` }, icon('plus'), `Add more from ${K.name}`)),
+          h('a', { class: 'addmore', href: `kitchen.html?k=${k}${SN.outlets.get(k) ? '&o=' + SN.outlets.get(k) : ''}` }, icon('plus'), `Add more from ${K.name}`)),
         otherN ? nudge(other, otherN) : null),
       h('aside', { class: 'panel summary', 'aria-label': 'Order summary' },
         h('h2', { class: 'panel__title', text: 'Summary' }),
