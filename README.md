@@ -34,6 +34,16 @@ Then open http://localhost:8137.
 - Crunchies and Roots items never share a bag. Each kitchen has its own bag and checkout.
 - After changing CSS or JS, bump the `?v=` number on the links in each HTML file so browsers fetch the new files.
 
+## Add to home screen
+
+The site is an installable web app (`manifest.webmanifest`, `sw.js`, icons in `assets/icons/`).
+
+- Android / Chrome: a card offers "Add to home screen" and opens the browser's install dialog.
+- iPhone / iPad: iOS has no install API, so the card shows the Share → Add to Home Screen steps.
+- The card waits 4 seconds, never shows when already installed or on cart/checkout, and "Not now" hides it for 7 days.
+- Preview it on any device with `?install=ios` or `?install=android` on the URL.
+- The service worker caches only static files. Pages load network-first so updates show straight away; `offline.html` appears when there's no connection. Bump `VERSION` in `sw.js` if you ever need to wipe old caches.
+
 ## Photos
 
 Most photos are from [Unsplash](https://unsplash.com). The market photos are from Wikimedia Commons:

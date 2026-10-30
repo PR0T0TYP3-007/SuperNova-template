@@ -1,0 +1,24 @@
+{
+  "name": "Supernova — Life Sweet.",
+  "short_name": "Supernova",
+  "description": "Food, market runs, dry cleaning and flight deals for uni students.",
+  "id": "./",
+  "start_url": "./index.html?source=homescreen",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fff5e1",
+  "theme_color": "#1b0b2b",
+  "lang": "en-NG",
+  "categories": ["food", "shopping", "lifestyle", "travel"],
+  "icons": [
+    { "src": "assets/icons/icon-96.png", "sizes": "96x96", "type": "image/png" },
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Order food", "url": "./food.html", "icons": [{ "src": "assets/icons/icon-96.png", "sizes": "96x96" }] },
+    { "name": "Your orders", "url": "./orders.html", "icons": [{ "src": "assets/icons/icon-96.png", "sizes": "96x96" }] }
+  ]
+}

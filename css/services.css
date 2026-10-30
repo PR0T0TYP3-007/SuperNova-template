@@ -266,3 +266,49 @@ input[type="date"][aria-invalid="true"] { border-color: var(--berry); background
 .fopt__price s { font-size: var(--sm); font-weight: 700; color: var(--ink-3); }
 .fopt__price strong { font-family: var(--font-display); font-weight: 800; font-size: 1.4rem; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
 .fopts__note { display: flex; align-items: center; gap: var(--s-2); font-size: var(--sm); color: rgba(255, 245, 225, 0.8); }
+
+/* ==========================================================================
+   Add to home screen card
+   ========================================================================== */
+.install {
+  position: fixed;
+  z-index: 80;
+  left: 12px;
+  right: 12px;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  max-width: 440px;
+  margin-inline: auto;
+  display: grid;
+  gap: var(--s-4);
+  padding: var(--s-5) var(--s-4) var(--s-4);
+  background: var(--surface);
+  color: var(--ink);
+  border: var(--stroke);
+  border-radius: 24px;
+  box-shadow: 6px 6px 0 var(--berry);
+  animation: install-in 420ms var(--ease-pop);
+}
+.install.is-leaving { animation: install-out 240ms ease-in forwards; }
+@keyframes install-in { from { translate: 0 120%; opacity: 0; } }
+@keyframes install-out { to { translate: 0 120%; opacity: 0; } }
+body:has(.bagbar:not([hidden])) .install,
+body:has(.paybar:not([hidden])) .install { bottom: 96px; }
+.install--ios { padding-bottom: var(--s-4); }
+.install__x { position: absolute; top: 10px; right: 10px; display: grid; place-items: center; width: 40px; height: 40px; background: var(--cream); border: var(--stroke-2); border-radius: 50%; cursor: pointer; }
+.install__x .i { width: 18px; height: 18px; }
+.install__head { display: flex; gap: var(--s-3); align-items: center; padding-right: 44px; }
+.install__icon { width: 56px; height: 56px; flex: none; rotate: -6deg; filter: drop-shadow(2px 2px 0 var(--ink)); }
+.install__title { font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; letter-spacing: -0.025em; line-height: 1.1; }
+.install__title em { font-family: var(--font-serif); font-weight: 400; color: var(--berry); font-size: 1.08em; }
+.install__sub { margin-top: 4px; font-size: var(--sm); color: var(--ink-2); }
+.install__acts { display: flex; gap: var(--s-2); justify-content: flex-end; }
+.install__acts .btn--loud { min-height: 50px; padding-inline: var(--s-4); font-size: 1rem; }
+.install__steps { display: grid; gap: var(--s-2); }
+.install__steps li { display: grid; grid-template-columns: 30px 1fr auto; gap: var(--s-3); align-items: center; padding: 10px 12px; background: var(--cream-3); border: 2px dashed color-mix(in srgb, var(--ink) 18%, transparent); border-radius: 14px; font-size: var(--sm); font-weight: 600; }
+.install__n { display: grid; place-items: center; width: 28px; height: 28px; background: var(--gold); border: var(--stroke-2); border-radius: 50%; font-family: var(--font-display); font-weight: 800; }
+.install__glyph { display: grid; place-items: center; width: 36px; height: 36px; background: var(--surface); border: var(--stroke-2); border-radius: 10px; color: #0a84ff; }
+.install__glyph .i { width: 20px; height: 20px; }
+/* On iPhone Safari the Share button sits in the bottom toolbar: point at it. */
+.install__arrow { position: absolute; left: 50%; bottom: -30px; width: 0; height: 0; translate: -50% 0; border: 14px solid transparent; border-top: 16px solid var(--ink); animation: nudge 1.2s ease-in-out infinite; }
+@keyframes nudge { 50% { translate: -50% 6px; } }
+@media (prefers-reduced-motion: reduce) { .install, .install.is-leaving, .install__arrow { animation: none; } }

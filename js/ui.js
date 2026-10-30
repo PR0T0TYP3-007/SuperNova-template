@@ -27,7 +27,9 @@ document.documentElement.classList.add('js');
     ${S('pin', st('M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z') + '<circle cx="12" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="2.2"/>')}
     ${S('chart', st('M4 20V10M10 20V4M16 20v-7M22 20H2'))}
     ${S('menu', st('M4 7h16M4 12h16M4 17h16'))}
-    ${S('basket', st('M3 10h18l-2 10H5L3 10Z') + st('M8 10l3-6M16 10l-3-6M9 14v3M15 14v3M12 14v3'))}
+    ${S('share', st('M12 3v12M8 7l4-4 4 4') + st('M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1'))}
+    ${S('plussq', '<rect x="3.5" y="3.5" width="17" height="17" rx="4" fill="none" stroke="currentColor" stroke-width="2.2"/>' + st('M12 8v8M8 12h8'))}
+    ${S('basket',st('M3 10h18l-2 10H5L3 10Z') + st('M8 10l3-6M16 10l-3-6M9 14v3M15 14v3M12 14v3'))}
     ${S('shirt', st('M8 3 4 6l2 4 2-1v12h8V9l2 1 2-4-4-3a4 4 0 0 1-8 0Z'))}
     ${S('search','<circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.2"/>' + st('m20 20-4-4'))}
     ${S('flame', st('M12 22c4 0 7-3 7-7 0-5-5-7-5-12-3 2-4 5-4 7-1-1-2-2-2-4-2 2-3 5-3 9 0 4 3 7 7 7Z'))}
