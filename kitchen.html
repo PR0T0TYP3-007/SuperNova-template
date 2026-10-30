@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en-NG">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menu — Supernova</title>
+  <meta name="description" content="Browse the menu and build your bag on Supernova.">
+  <meta name="theme-color" content="#1b0b2b">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css?v=5">
+  <link rel="stylesheet" href="css/app.css?v=5">
+  <script src="js/data.js?v=5" defer></script>
+  <script src="js/store.js?v=5" defer></script>
+  <script src="js/ui.js?v=5" defer></script>
+  <script src="js/pages/kitchen.js?v=5" defer></script>
+</head>
+<body data-page="food">
+<a class="skip" href="#main">Skip to content</a>
+<header class="chrome" data-chrome></header>
+
+<main id="main" data-kitchen-page>
+  <section class="wrap">
+    <div class="khero" data-khero></div>
+  </section>
+
+  <nav class="catnav" aria-label="Menu sections" data-catnav></nav>
+
+  <div class="wrap menu" data-menu></div>
+</main>
+
+<div class="bagbar" data-bagbar hidden></div>
+<footer class="foot" data-foot></footer>
+</body>
+</html>

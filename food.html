@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en-NG">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Food — Supernova</title>
+  <meta name="description" content="Order from Crunchies or Roots on Supernova. Each kitchen has its own bag, delivered to your hostel.">
+  <meta name="theme-color" content="#1b0b2b">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css?v=5">
+  <link rel="stylesheet" href="css/app.css?v=5">
+  <script src="js/data.js?v=5" defer></script>
+  <script src="js/store.js?v=5" defer></script>
+  <script src="js/ui.js?v=5" defer></script>
+  <script src="js/pages/food.js?v=5" defer></script>
+</head>
+<body data-page="food">
+<a class="skip" href="#main">Skip to content</a>
+<header class="chrome" data-chrome></header>
+
+<main id="main">
+  <section class="wrap page-head">
+    <p class="eyebrow"><svg class="i" aria-hidden="true"><use href="#i-star"/></svg> Food</p>
+    <h1 class="h1">Where are we <em>eating from?</em></h1>
+    <p class="lede">Pick a kitchen. Each one has its own bag, so your Crunchies and Roots orders are cooked, packed and tracked separately.</p>
+  </section>
+
+  <section class="wrap picker" aria-label="Choose a kitchen" data-picker></section>
+
+  <section class="wrap bag-rules" aria-labelledby="rules-h">
+    <h2 id="rules-h" class="sr-only">How bags work</h2>
+    <div class="rule" data-reveal>
+      <span class="rule__n">1</span>
+      <p><strong>One kitchen, one bag.</strong> Crunchies and Roots never share a bag, so nothing waits on the other kitchen.</p>
+    </div>
+    <div class="rule" data-reveal>
+      <span class="rule__n">2</span>
+      <p><strong>Both bags are kept.</strong> Fill one, switch, fill the other. Check out whichever you're ready for.</p>
+    </div>
+    <div class="rule" data-reveal>
+      <span class="rule__n">3</span>
+      <p><strong>Tracked on its own.</strong> Every order has its own tracker, from the kitchen to your room.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot" data-foot></footer>
+</body>
+</html>

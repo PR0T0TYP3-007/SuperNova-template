@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en-NG">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flights, coming soon — Supernova</title>
+  <meta name="description" content="Flights on Supernova are coming soon. Join the list to hear first.">
+  <meta name="theme-color" content="#1b0b2b">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css?v=5">
+  <link rel="stylesheet" href="css/app.css?v=5">
+  <script src="js/data.js?v=5" defer></script>
+  <script src="js/store.js?v=5" defer></script>
+  <script src="js/ui.js?v=5" defer></script>
+  <script src="js/pages/flights.js?v=5" defer></script>
+</head>
+<body data-page="flights">
+<a class="skip" href="#main">Skip to content</a>
+<header class="chrome" data-chrome></header>
+
+<main id="main">
+  <section class="wrap fl">
+    <div class="fl__panel">
+      <div class="fl__sky" aria-hidden="true"></div>
+      <svg class="fl__path" viewBox="0 0 600 300" preserveAspectRatio="none" aria-hidden="true"><path d="M-10 260 C 150 240, 260 80, 610 40"/></svg>
+
+      <div class="fl__copy">
+        <span class="badge badge--soon"><svg class="i" aria-hidden="true"><use href="#i-plane"/></svg>Coming soon</span>
+        <h1 class="fl__title">Boarding <em>soon.</em></h1>
+        <p class="fl__lede">Flights home for the holidays, long weekends and the trip abroad, booked on the same app you order dinner from. We're getting it ready with a licensed travel partner.</p>
+
+        <form class="fl__form" data-fl-form novalidate>
+          <label class="sr-only" for="fl-email">Email address</label>
+          <input id="fl-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@university.edu.ng" required>
+          <button class="btn btn--gold" type="submit">Get early access</button>
+          <p class="inline-form__msg" role="status" aria-live="polite"></p>
+        </form>
+        <p class="fl__fine">We'll only email you about flights opening. No spam.</p>
+      </div>
+
+      <div class="fl__art" aria-hidden="true">
+        <div class="pass">
+          <div class="pass__main">
+            <div class="pass__brand">
+              <span class="mark__tile"><svg><use href="#i-nova"/></svg></span>
+              <span>Supernova <b>flights</b></span>
+            </div>
+            <div class="pass__route">
+              <div><span class="pass__code">LOS</span><span class="pass__city">Lagos</span></div>
+              <span class="pass__plane"><svg class="i"><use href="#i-plane"/></svg></span>
+              <div class="pass__to"><span class="pass__code" data-fl-code>ABV</span><span class="pass__city" data-fl-city>Abuja</span></div>
+            </div>
+            <dl class="pass__grid">
+              <div><dt>Passenger</dt><dd>You</dd></div>
+              <div><dt>Flight</dt><dd>SN 001</dd></div>
+              <div><dt>Seat</dt><dd>Window</dd></div>
+              <div><dt>Gate</dt><dd class="pass__soon">Opening soon</dd></div>
+            </dl>
+          </div>
+          <div class="pass__stub">
+            <span class="pass__stub-k">Boarding</span>
+            <span class="pass__stub-v">Soon</span>
+            <span class="pass__barcode"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section section--tight" aria-labelledby="routes-h">
+    <div class="routes" data-reveal>
+      <div>
+        <p class="eyebrow"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg> Help us plan</p>
+        <h2 id="routes-h" class="h2">Where do you <em>fly most?</em></h2>
+        <p class="lede">Tap the places you travel to. It tells us which routes to open first.</p>
+      </div>
+      <div class="routes__chips" role="group" aria-label="Destinations" data-routes>
+        <button class="chip" type="button" aria-pressed="false" data-code="ABV">Abuja</button>
+        <button class="chip" type="button" aria-pressed="false" data-code="PHC">Port Harcourt</button>
+        <button class="chip" type="button" aria-pressed="false" data-code="ENU">Enugu</button>
+        <button class="chip" type="button" aria-pressed="false" data-code="KAN">Kano</button>
+        <button class="chip" type="button" aria-pressed="false" data-code="QOW">Owerri</button>
+        <button class="chip" type="button" aria-pressed="false" data-code="ACC">Accra</button>
+        <button class="chip" type="button" aria-pressed="false" data-code="LHR">London</button>
+        <button class="chip" type="button" aria-pressed="false" data-code="DXB">Dubai</button>
+        <button class="chip" type="button" aria-pressed="false" data-code="JFK">New York</button>
+        <button class="chip" type="button" aria-pressed="false" data-code="YYZ">Toronto</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section section--tight" aria-label="What to expect">
+    <div class="expect">
+      <article class="promise" data-reveal>
+        <span class="promise__icon promise__icon--gold"><svg class="i" aria-hidden="true"><use href="#i-plane"/></svg></span>
+        <h2 class="promise__k">Home for the holidays</h2>
+        <p>End of semester, mid-term breaks, the long weekend. Search and book in a few taps.</p>
+      </article>
+      <article class="promise" data-reveal>
+        <span class="promise__icon promise__icon--berry"><svg class="i" aria-hidden="true"><use href="#i-star"/></svg></span>
+        <h2 class="promise__k">One Supernova account</h2>
+        <p>The same login as your food orders. Your trips sit next to your orders.</p>
+      </article>
+      <article class="promise" data-reveal>
+        <span class="promise__icon promise__icon--mint"><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg></span>
+        <h2 class="promise__k">Booked through a licensed partner</h2>
+        <p>Tickets are issued by an accredited travel agency, so your booking is the real thing.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="band band--flights" aria-labelledby="fl-band-h">
+    <img class="band__img" src="assets/img/plane-wing.webp" width="1100" height="731" loading="lazy" alt="">
+    <div class="wrap band__in">
+      <h2 id="fl-band-h" class="band__title">Until then, <em>dinner's on.</em></h2>
+      <p class="band__note">Crunchies and Roots are delivering to your hostel right now.</p>
+      <a class="btn btn--loud" href="food.html">Order food <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot" data-foot></footer>
+</body>
+</html>
