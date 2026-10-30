@@ -10,8 +10,8 @@ SN.KITCHENS = {
   crunchies: {
     id: 'crunchies',
     name: 'Crunchies',
-    tagline: 'Crisp, hot and quick.',
-    blurb: 'Fried chicken, wings, shawarma and burgers. The late-night study fuel.',
+    tagline: 'Crunch first. Questions later.',
+    blurb: 'Fried chicken, wings, shawarma and burgers. Basically your 2am study plan.',
     hours: '10:00 – 22:00',
     eta: '25–40 min',
     fee: 800,
@@ -21,8 +21,8 @@ SN.KITCHENS = {
   roots: {
     id: 'roots',
     name: 'Roots',
-    tagline: 'Home cooking, done properly.',
-    blurb: 'Party jollof, soups and swallow, grills and small chops. Food that tastes like a weekend at home.',
+    tagline: "Like your mum's. Minus the lecture.",
+    blurb: 'Smoky jollof, egusi and swallow, grills and small chops. Sunday lunch, any day of the week.',
     hours: '09:00 – 21:00',
     eta: '35–50 min',
     fee: 800,
@@ -118,3 +118,87 @@ SN.STATUS_FLOW = [
   { id: 'out_for_delivery', label: 'Out for delivery', note: 'On the way to your hostel', at: 240 },
   { id: 'delivered', label: 'Delivered', note: 'Enjoy. Life Sweet.', at: 480 }
 ];
+
+// ---- Market runs -----------------------------------------------------------
+// Students send a shopping list; partner vendors buy it and we deliver.
+// Nothing is charged until the student approves a quote.
+//
+// The market photos are atmosphere only. They don't say where partners shop.
+SN.MARKET_PHOTOS = [
+  { img: 'market-aba-ariaria', caption: 'Ariaria Market, Aba', credit: 'Photo: Nyerougo, CC0', creditUrl: 'https://commons.wikimedia.org/wiki/File:Ariaria_International_Market.webp' },
+  { img: 'market-umuahia', caption: 'Umuahia Market', credit: 'Photo: Ukabia, CC BY-SA 3.0, cropped', creditUrl: 'https://commons.wikimedia.org/wiki/File:Umuahia_montage.jpg' }
+];
+SN.MARKET_UNITS = ['kg', 'bag', 'paint', 'mudu', 'derica', 'tuber', 'litre', 'bunch', 'pack', 'pieces'];
+// Placeholder per-unit estimates used only by the sandbox to fake a quote.
+SN.STAPLES = [
+  ['Rice', 'kg', 1600], ['Beans', 'paint', 9000], ['Garri', 'paint', 5500], ['Yam', 'tuber', 3500],
+  ['Semo', 'kg', 1800], ['Spaghetti', 'pack', 1100], ['Palm oil', 'litre', 2600], ['Groundnut oil', 'litre', 3200],
+  ['Tomatoes', 'paint', 8000], ['Pepper', 'derica', 900], ['Onions', 'pieces', 250], ['Egusi', 'derica', 2500],
+  ['Ogbono', 'derica', 3000], ['Crayfish', 'derica', 2200], ['Stockfish', 'pieces', 3500], ['Ugu leaves', 'bunch', 500],
+  ['Chicken', 'kg', 5500], ['Goat meat', 'kg', 7000], ['Eggs', 'pieces', 250], ['Seasoning cubes', 'pack', 1300],
+  ['Tomato paste', 'pack', 700], ['Plantain', 'bunch', 4000]
+];
+SN.MARKET_PACKS = [
+  { id: 'starter', name: 'Hostel starter pack', blurb: 'Rice, beans, garri, oil and the basics. A week of cooking, sorted.', img: 'market-tomatoes-basket',
+    items: [['Rice', 5, 'kg'], ['Beans', 1, 'paint'], ['Garri', 1, 'paint'], ['Groundnut oil', 2, 'litre'], ['Tomato paste', 4, 'pack'], ['Seasoning cubes', 1, 'pack'], ['Onions', 6, 'pieces']] },
+  { id: 'soup', name: 'Soup pot pack', blurb: 'Everything for a big pot of egusi. Swallow not included, but we can add it.', img: 'market-peppers',
+    items: [['Egusi', 2, 'derica'], ['Palm oil', 1, 'litre'], ['Crayfish', 1, 'derica'], ['Pepper', 1, 'derica'], ['Ugu leaves', 2, 'bunch'], ['Stockfish', 1, 'pieces'], ['Goat meat', 1, 'kg']] },
+  { id: 'fresh', name: 'Fresh stuff pack', blurb: 'Tomatoes, pepper, onions, plantain and eggs. For when the fridge is looking sad.', img: 'market-bags',
+    items: [['Tomatoes', 1, 'paint'], ['Pepper', 1, 'derica'], ['Onions', 6, 'pieces'], ['Plantain', 1, 'bunch'], ['Eggs', 12, 'pieces']] }
+];
+SN.MARKET_FEES = { service: 1500, delivery: 1000 };
+
+// ---- Dry cleaning ----------------------------------------------------------
+SN.LAUNDRY = [
+  { id: 'bag', name: 'By the bag', items: [
+    { id: 'wash-fold', name: 'Wash & fold', note: 'One bag, up to 6kg. Washed, dried, folded.', price: 3500 }] },
+  { id: 'iron', name: 'Wash & iron', items: [
+    { id: 'shirt', name: 'Shirt', price: 600 }, { id: 'trousers', name: 'Trousers', price: 600 },
+    { id: 'tshirt', name: 'T-shirt', price: 400 }, { id: 'bedsheet', name: 'Bedsheet set', price: 1200 }] },
+  { id: 'dry', name: 'Dry clean', items: [
+    { id: 'suit', name: 'Suit, 2 piece', price: 3500 }, { id: 'native', name: 'Native wear / agbada', price: 3000 },
+    { id: 'dress', name: 'Dress', price: 1800 }, { id: 'blazer', name: 'Blazer', price: 2000 }, { id: 'duvet', name: 'Duvet', price: 3000 }] }
+];
+SN.LAUNDRY_FEES = { pickup: 1000, express: 1500 };
+
+// ---- Flights ---------------------------------------------------------------
+// Students send a trip request; the travel team replies with a shortlist of
+// deals within a few hours. Nothing is charged until they pick one.
+SN.AIRPORTS = [
+  ['LOS', 'Lagos'], ['ABV', 'Abuja'], ['PHC', 'Port Harcourt'], ['QOW', 'Owerri'], ['ENU', 'Enugu'],
+  ['QUO', 'Uyo'], ['CBQ', 'Calabar'], ['BNI', 'Benin City'], ['ABB', 'Asaba'], ['KAN', 'Kano'],
+  ['ACC', 'Accra'], ['NBO', 'Nairobi'], ['JNB', 'Johannesburg'], ['DXB', 'Dubai'], ['LHR', 'London'],
+  ['IST', 'Istanbul'], ['JFK', 'New York'], ['IAH', 'Houston'], ['YYZ', 'Toronto']
+];
+SN.DOMESTIC = ['LOS', 'ABV', 'PHC', 'QOW', 'ENU', 'QUO', 'CBQ', 'BNI', 'ABB', 'KAN'];
+SN.AIRLINES = {
+  domestic: ['Air Peace', 'Ibom Air', 'United Nigeria', 'Arik Air', 'Overland Airways', 'ValueJet'],
+  international: ['Emirates', 'Qatar Airways', 'British Airways', 'Turkish Airlines', 'Ethiopian Airlines', 'Kenya Airways', 'Delta']
+};
+SN.CONCIERGE_FEE = 15000;
+
+// Status flows per order type. `at` is seconds after the order (food,
+// laundry) or after payment (market and flight, from the third step on).
+SN.FLOWS = {
+  food: SN.STATUS_FLOW,
+  market: [
+    { id: 'requested', label: 'List received', note: 'Our partners are checking prices', at: 0 },
+    { id: 'quoted', label: 'Quote ready', note: 'Check your quote and pay to start shopping', at: 40 },
+    { id: 'shopping', label: 'Shopping', note: 'Our partners are buying your list', at: 0 },
+    { id: 'out_for_delivery', label: 'Out for delivery', note: 'On the way to you', at: 120 },
+    { id: 'delivered', label: 'Delivered', note: 'Happy cooking', at: 300 }
+  ],
+  laundry: [
+    { id: 'booked', label: 'Pickup booked', note: 'A rider is coming to collect', at: 0 },
+    { id: 'picked_up', label: 'Picked up', note: 'Your clothes are with the cleaners', at: 60 },
+    { id: 'cleaning', label: 'Cleaning', note: 'Washing, pressing, folding', at: 150 },
+    { id: 'out_for_delivery', label: 'On the way back', note: 'Fresh clothes incoming', at: 300 },
+    { id: 'delivered', label: 'Delivered', note: 'Smelling good', at: 480 }
+  ],
+  flight: [
+    { id: 'requested', label: 'Request received', note: 'Our travel team is hunting for deals', at: 0 },
+    { id: 'options', label: 'Options ready', note: 'Pick a flight and pay to book it', at: 45 },
+    { id: 'booking', label: 'Booking', note: 'Locking in your seat', at: 0 },
+    { id: 'ticketed', label: 'Ticket issued', note: 'Your e-ticket is in your email', at: 60 }
+  ]
+};

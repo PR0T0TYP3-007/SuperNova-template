@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en-NG">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Market runs — Supernova</title>
+  <meta name="description" content="Send your foodstuff list. Our partners buy it fresh and Supernova brings it to you. Pay only after you see the quote.">
+  <meta name="theme-color" content="#1b0b2b">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css?v=16">
+  <link rel="stylesheet" href="css/app.css?v=16">
+  <link rel="stylesheet" href="css/services.css?v=16">
+  <script src="js/data.js?v=16" defer></script>
+  <script src="js/store.js?v=16" defer></script>
+  <script src="js/ui.js?v=16" defer></script>
+  <script src="js/address.js?v=16" defer></script>
+  <script src="js/pages/market.js?v=16" defer></script>
+</head>
+<body data-page="market" data-kitchen="market">
+<a class="skip" href="#main">Skip to content</a>
+<header class="chrome" data-chrome></header>
+
+<main id="main">
+  <section class="wrap">
+    <div class="svc-hero">
+      <div class="svc-hero__sky" aria-hidden="true"></div>
+      <div class="svc-hero__copy">
+        <p class="svc-hero__kicker"><span class="badge badge--new">New</span> Market runs</p>
+        <h1 class="svc-hero__title">Market day, <em>minus the trip.</em></h1>
+        <p class="svc-hero__lede">Send us your foodstuff list. Our partners buy it fresh and we bring it to you. You only pay once you've seen the quote.</p>
+        <div class="hero__cta">
+          <a class="btn btn--loud" href="#list">Start my list <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn--ghost" href="#how">How it works</a>
+        </div>
+      </div>
+      <div class="svc-hero__art" aria-hidden="true">
+        <figure class="polaroid polaroid--a">
+          <img src="assets/img/market-aba-ariaria.webp" width="1600" height="633" alt="">
+          <figcaption>Ariaria Market, Aba</figcaption>
+        </figure>
+        <figure class="polaroid polaroid--b">
+          <img src="assets/img/market-umuahia.webp" width="656" height="330" alt="">
+          <figcaption>Umuahia Market</figcaption>
+        </figure>
+        <figure class="polaroid polaroid--c">
+          <img src="assets/img/market-tomato-table.webp" width="800" height="1000" alt="">
+        </figure>
+        <span class="sticker sticker--partners">From our partners</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section section--tight" id="how" aria-labelledby="how-h">
+    <h2 id="how-h" class="sr-only">How market runs work</h2>
+    <ol class="howrow">
+      <li class="howcard" data-reveal><span class="howcard__n">1</span><h3>Send your list</h3><p>Rice, garri, pepper, the works. Start from a pack or type it out.</p></li>
+      <li class="howcard" data-reveal><span class="howcard__n">2</span><h3>Get a quote</h3><p>Our partner vendors check today's prices and send you the total.</p></li>
+      <li class="howcard" data-reveal><span class="howcard__n">3</span><h3>Pay if you like it</h3><p>Happy with the price? Pay. Not happy? Change the list. No charge until you say yes.</p></li>
+      <li class="howcard" data-reveal><span class="howcard__n">4</span><h3>We bring it over</h3><p>Shopped, packed and brought to you on the day you picked.</p></li>
+    </ol>
+  </section>
+
+  <section class="wrap section section--tight" aria-labelledby="where-h">
+    <div class="section__head">
+      <div>
+        <p class="eyebrow"><svg class="i" aria-hidden="true"><use href="#i-basket"/></svg> Market day</p>
+        <h2 id="where-h" class="h2">All the market, <em>none of the stress.</em></h2>
+      </div>
+      <p class="lede">No bus, no haggling, no carrying a bag of rice up four flights of stairs. You know the vibe. We just handle it for you.</p>
+    </div>
+    <div class="markets" data-markets></div>
+  </section>
+
+  <section class="wrap section section--tight" aria-labelledby="packs-h">
+    <div class="section__head">
+      <div>
+        <p class="eyebrow"><svg class="i" aria-hidden="true"><use href="#i-basket"/></svg> Short on time?</p>
+        <h2 id="packs-h" class="h2">Start with <em>a pack.</em></h2>
+      </div>
+      <p class="lede">Pick one, then add or remove anything you like.</p>
+    </div>
+    <div class="packs" data-packs></div>
+  </section>
+
+  <section class="wrap section" id="list" aria-labelledby="list-h">
+    <h2 id="list-h" class="h1">Your <em>list</em></h2>
+    <div data-builder></div>
+  </section>
+
+  <section class="wrap section section--tight" aria-labelledby="mfaq-h">
+    <div class="faq">
+      <div>
+        <p class="eyebrow">Good to know</p>
+        <h2 id="mfaq-h" class="h2">Market run <em>questions</em></h2>
+      </div>
+      <div class="faq__list">
+        <details class="qa" open>
+          <summary>Who does the shopping?</summary>
+          <p>Our partner vendors. They buy your list, pack it, and hand it to our rider.</p>
+        </details>
+        <details class="qa">
+          <summary>How much does it cost?</summary>
+          <p>Whatever the market charges for your items, plus a flat service fee and delivery. You see all of it in the quote before you pay a kobo.</p>
+        </details>
+        <details class="qa">
+          <summary>What if something isn't available?</summary>
+          <p>We'll tell you in the quote and suggest a swap. You can accept it, drop it, or change the list.</p>
+        </details>
+        <details class="qa">
+          <summary>Can I set a budget?</summary>
+          <p>Yes. Add one to your list and we'll keep the quote under it, or tell you what to cut.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot" data-foot></footer>
+</body>
+</html>

@@ -612,7 +612,8 @@ body:has(dialog[open]) { overflow: hidden; }
 }
 .tstatus__sky { position: absolute; inset: 0; z-index: -1; background: radial-gradient(circle at 90% 0%, color-mix(in srgb, var(--k) 50%, transparent), transparent 45%), radial-gradient(circle at 0% 100%, rgba(223, 26, 94, 0.3), transparent 45%), linear-gradient(160deg, var(--night), var(--night-2)); }
 .tstatus__yay { position: relative; margin-bottom: var(--s-4); }
-.tstatus__placed { display: inline-flex; align-items: center; gap: var(--s-2); padding: 8px 16px; background: var(--mint); color: #fff; border: 2px solid var(--cream); border-radius: var(--r-pill); font-weight: 800; animation: pop-in 400ms var(--ease-pop); }
+.tstatus__placed { display: inline-flex; align-items: center; gap: var(--s-2); padding: 8px 16px; background: var(--mint); color: #fff; border: 2px solid var(--cream); border-radius: var(--r-pill); font-weight: 800; }
+.tstatus__placed.is-first { animation: pop-in 400ms var(--ease-pop); }
 .confetti { position: absolute; inset: -20px 0 auto; height: 60px; pointer-events: none; }
 .confetti svg { position: absolute; width: 16px; height: 16px; color: var(--gold); animation: confetti 1.6s var(--ease-out) forwards; opacity: 0; }
 .confetti svg:nth-child(1) { left: 5%; } .confetti svg:nth-child(2) { left: 22%; color: var(--berry); animation-delay: 0.1s; }

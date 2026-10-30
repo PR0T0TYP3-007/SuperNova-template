@@ -3,23 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Supernova — Life Sweet. Food & flights for students</title>
-  <meta name="description" content="Supernova brings Crunchies and Roots to your hostel door, with flights home coming soon. Built for students at Nigeria's private universities. Life Sweet.">
+  <title>Supernova — Life Sweet. Food, market runs, dry cleaning and flights for students</title>
+  <meta name="description" content="Food from Crunchies and Roots, market runs, dry cleaning and flight deals for uni students in Nigeria. Life Sweet.">
   <meta name="theme-color" content="#1b0b2b">
   <meta property="og:title" content="Supernova — Life Sweet.">
-  <meta property="og:description" content="Crunchies and Roots, delivered to your hostel. Flights home, coming soon.">
+  <meta property="og:description" content="Food, market runs, dry cleaning and flight deals for uni students.">
   <meta property="og:image" content="assets/img/jollof-spread.webp">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
   <link rel="preload" as="image" href="assets/img/hero-jollof-chicken.webp">
-  <link rel="stylesheet" href="css/styles.css?v=5">
-  <link rel="stylesheet" href="css/app.css?v=5">
-  <script src="js/data.js?v=5" defer></script>
-  <script src="js/store.js?v=5" defer></script>
-  <script src="js/ui.js?v=5" defer></script>
-  <script src="js/main.js?v=5" defer></script>
+  <link rel="stylesheet" href="css/styles.css?v=16">
+  <link rel="stylesheet" href="css/app.css?v=16">
+  <link rel="stylesheet" href="css/services.css?v=16">
+  <script src="js/data.js?v=16" defer></script>
+  <script src="js/store.js?v=16" defer></script>
+  <script src="js/ui.js?v=16" defer></script>
+  <script src="js/main.js?v=16" defer></script>
 </head>
 <body data-page="home">
 
@@ -28,7 +29,7 @@
 <div class="notice" role="note">
   <div class="wrap notice__in">
     <svg class="i" aria-hidden="true"><use href="#i-pin"/></svg>
-    <p>Now delivering to hostels at selected private universities. <a href="#campus">Is your campus on the list?</a></p>
+    <p>We're live at selected private universities. <a href="#campus">Is yours one of them?</a></p>
   </div>
 </div>
 
@@ -43,17 +44,19 @@
         <div class="hero__sky" aria-hidden="true"></div>
 
         <div class="hero__copy">
-          <p class="eyebrow eyebrow--light"><svg class="i" aria-hidden="true"><use href="#i-star"/></svg> For students at Nigeria's private universities</p>
+          <p class="eyebrow eyebrow--light"><svg class="i" aria-hidden="true"><use href="#i-star"/></svg> Made for uni students in Nigeria</p>
           <h1 class="hero__title">Life<br><em>Sweet.</em></h1>
-          <p class="hero__claim">Crunchies and Roots, brought to your hostel door. Flights home, coming soon. One app for the good parts of campus life.</p>
+          <p class="hero__claim">Midnight jollof. A full week of foodstuff. Your agbada, pressed and back by Friday. A cheap flight home for the holidays. Whatever campus life needs, we sort it.</p>
           <div class="hero__cta">
             <a class="btn btn--loud" href="food.html">Order food <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <a class="btn btn--ghost" href="flights.html">See flights</a>
+            <a class="btn btn--ghost" href="#services">See everything</a>
           </div>
           <ul class="hero__meta" aria-label="Partners">
             <li><span class="dot dot--crunchies"></span>Crunchies</li>
             <li><span class="dot dot--roots"></span>Roots</li>
-            <li><span class="dot dot--sky"></span>Flights · soon</li>
+            <li><span class="dot dot--market"></span>Market runs</li>
+            <li><span class="dot dot--sky"></span>Dry cleaning</li>
+            <li><span class="dot dot--flight"></span>Flights</li>
           </ul>
         </div>
 
@@ -93,36 +96,91 @@
   <div class="ribbon" aria-hidden="true">
     <div class="ribbon__track">
       <span>Party jollof</span><svg><use href="#i-star"/></svg>
+      <span>Market runs</span><svg><use href="#i-star"/></svg>
       <span>Crunchy chicken</span><svg><use href="#i-star"/></svg>
-      <span>Shawarma</span><svg><use href="#i-star"/></svg>
+      <span>Dry cleaning</span><svg><use href="#i-star"/></svg>
       <span>Small chops</span><svg><use href="#i-star"/></svg>
-      <span>Hot wings</span><svg><use href="#i-star"/></svg>
-      <span>Flights home</span><svg><use href="#i-star"/></svg>
+      <span>Flights soon</span><svg><use href="#i-star"/></svg>
       <span>Party jollof</span><svg><use href="#i-star"/></svg>
+      <span>Market runs</span><svg><use href="#i-star"/></svg>
       <span>Crunchy chicken</span><svg><use href="#i-star"/></svg>
-      <span>Shawarma</span><svg><use href="#i-star"/></svg>
+      <span>Dry cleaning</span><svg><use href="#i-star"/></svg>
       <span>Small chops</span><svg><use href="#i-star"/></svg>
-      <span>Hot wings</span><svg><use href="#i-star"/></svg>
-      <span>Flights home</span><svg><use href="#i-star"/></svg>
+      <span>Flights soon</span><svg><use href="#i-star"/></svg>
     </div>
   </div>
+
+  <!-- ===================== SERVICES ===================== -->
+  <section class="section section--tight" id="services" aria-labelledby="svc-h">
+    <div class="wrap">
+      <div class="section__head">
+        <div>
+          <p class="eyebrow"><svg class="i" aria-hidden="true"><use href="#i-star"/></svg> One app, a lot less stress</p>
+          <h2 id="svc-h" class="h2">What can we <em>get you?</em></h2>
+        </div>
+        <p class="lede">Food in minutes, foodstuff from the market, clothes back clean. Pick one, or do all three before lunch.</p>
+      </div>
+      <div class="svc4">
+        <a class="svc" href="food.html" data-kitchen="crunchies" data-reveal>
+          <figure class="svc__media"><img src="assets/img/jollof-spread.webp" width="1100" height="733" loading="lazy" alt="Jollof rice, grilled fish and skewers on a table"></figure>
+          <div class="svc__body">
+            <span class="badge badge--live"><span class="badge__dot"></span>Open now</span>
+            <h3>Food from Crunchies and Roots</h3>
+            <p>Crispy chicken or smoky jollof? Your call. Each kitchen has its own bag, so nothing waits on anything.</p>
+            <span class="svc__go">Order food <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+          </div>
+        </a>
+        <a class="svc" href="market.html" data-kitchen="market" data-reveal>
+          <figure class="svc__media svc__duo">
+            <img src="assets/img/market-aba-ariaria.webp" width="1600" height="633" loading="lazy" alt="The entrance gate of Ariaria Market in Aba">
+            <img src="assets/img/market-umuahia.webp" width="656" height="330" loading="lazy" alt="A busy street at Umuahia Market">
+            <figcaption><span>Aba</span><span>Umuahia</span></figcaption>
+          </figure>
+          <div class="svc__body">
+            <span class="badge badge--new">New</span>
+            <h3>Market runs</h3>
+            <p>Send your foodstuff list. Our partners buy it fresh and we bring it over. You pay after you see the quote.</p>
+            <span class="svc__go">Start a list <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+          </div>
+        </a>
+        <a class="svc" href="laundry.html" data-kitchen="laundry" data-reveal>
+          <figure class="svc__media"><img src="assets/img/laundry-suits.webp" width="1000" height="667" loading="lazy" alt="Pressed suit jackets on hangers"></figure>
+          <div class="svc__body">
+            <span class="badge badge--new">New</span>
+            <h3>Dry cleaning</h3>
+            <p>We pick up, they clean, it comes back pressed. You do literally nothing.</p>
+            <span class="svc__go">Book a pickup <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+          </div>
+        </a>
+        <a class="svc svc--flights" href="flights.html" data-kitchen="flight" data-reveal>
+          <figure class="svc__media"><img src="assets/img/plane-sky.webp" width="1000" height="667" loading="lazy" alt="Sunlight through aeroplane windows above the clouds"></figure>
+          <div class="svc__body">
+            <span class="badge badge--new">New</span>
+            <h3>Flights, sorted</h3>
+            <p>Tell us where and when. In a few hours we send a shortlist of deals you won't find on your own. Need a ride to the airport? We'll send one.</p>
+            <span class="svc__go">Find me a flight <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- ===================== PROMISES ===================== -->
   <section class="wrap promises" aria-label="Why Supernova">
     <article class="promise" data-reveal>
       <span class="promise__icon promise__icon--gold"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg></span>
-      <h2 class="promise__k">To your room, not the gate</h2>
-      <p>Pick your hostel, block and room from a list. No long directions over the phone.</p>
+      <h2 class="promise__k">As close as campus allows</h2>
+      <p>We come to your hostel when security lets us. If our rider gets stopped at the gate, we'll call you to come grab it.</p>
     </article>
     <article class="promise" data-reveal>
       <span class="promise__icon promise__icon--berry"><svg class="i" aria-hidden="true"><use href="#i-chart"/></svg></span>
-      <h2 class="promise__k">What everyone actually orders</h2>
-      <p>The menu opens on the meals students order most. Nobody pays to be at the top.</p>
+      <h2 class="promise__k">The good stuff first</h2>
+      <p>Menus open with what everyone's actually ordering. No paid spots, just popular food.</p>
     </article>
     <article class="promise" data-reveal>
       <span class="promise__icon promise__icon--mint"><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg></span>
-      <h2 class="promise__k">Card details never touch us</h2>
-      <p>You pay on the payment provider's secure page. If something goes wrong, refunds go back the same way.</p>
+      <h2 class="promise__k">Pay without the worry</h2>
+      <p>You pay on our payment partner's secure page. We never see your card, and if we mess up, you get your money back.</p>
     </article>
   </section>
 
@@ -132,8 +190,8 @@
       <div class="section__head">
         <div>
           <p class="eyebrow"><svg class="i" aria-hidden="true"><use href="#i-chart"/></svg> Ranked by real orders</p>
-          <h2 id="menu-h" class="h2">Most ordered <em>on campus</em></h2>
-          <p class="lede">Two kitchens, two bags. These are the meals students go back for, in order.</p>
+          <h2 id="menu-h" class="h2">What everyone's <em>ordering</em></h2>
+          <p class="lede">The campus favourites, in order. Start at number one and work your way down.</p>
         </div>
         <div class="chips" role="group" aria-label="Filter by kitchen">
           <button class="chip" type="button" aria-pressed="true" data-filter="all">All</button>
@@ -271,43 +329,11 @@
       </div>
 
       <div class="menu-more">
-        <a class="btn btn--ink" href="food.html">See the full menus <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--ink" href="food.html">See all the food <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
   </section>
 
-  <!-- ===================== SERVICES ===================== -->
-  <section class="section section--tight" aria-label="What's on Supernova">
-    <div class="wrap services">
-      <article class="service service--food" data-reveal>
-        <div class="service__media"><img src="assets/img/jollof-spread.webp" width="1100" height="733" loading="lazy" alt="A spread of jollof rice, grilled fish and skewers with fresh vegetables"></div>
-        <div class="service__body">
-          <span class="badge badge--live"><span class="badge__dot"></span>Open now</span>
-          <h2 class="h3">Food from two kitchens you already love</h2>
-          <p>Crunchies for the crunch, Roots for the home cooking. Each kitchen has its own bag and its own tracker, so neither waits on the other.</p>
-          <a class="btn btn--primary" href="food.html">Start an order <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        </div>
-      </article>
-
-      <article class="service service--flights" id="flights" data-reveal>
-        <div class="service__sky" aria-hidden="true"></div>
-        <figure class="service__window">
-          <img src="assets/img/plane-window.webp" width="800" height="1200" loading="lazy" alt="Sunset over the clouds seen through an aeroplane window">
-        </figure>
-        <div class="service__body">
-          <span class="badge badge--soon"><svg class="i" aria-hidden="true"><use href="#i-plane"/></svg>Coming soon</span>
-          <h2 class="h3">Flights home, without the stress</h2>
-          <p>End of semester, long weekends, the trip abroad. Book flights on the same app you order dinner from. Join the list and we'll tell you first.</p>
-          <form class="inline-form" data-waitlist="flights" novalidate>
-            <label class="sr-only" for="fl-email">Email address</label>
-            <input id="fl-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@university.edu.ng" required>
-            <button class="btn btn--gold" type="submit">Notify me</button>
-            <p class="inline-form__msg" role="status" aria-live="polite"></p>
-          </form>
-        </div>
-      </article>
-    </div>
-  </section>
 
   <!-- ===================== HOW IT WORKS ===================== -->
   <section class="section" id="how" aria-labelledby="how-h">
@@ -321,21 +347,21 @@
             <span class="step__n">1</span>
             <div>
               <h3 class="step__k">Pick</h3>
-              <p>Browse both kitchens. The prices you see are the prices you pay, worked out by us, not guessed at checkout.</p>
+              <p>Browse both kitchens. The price you see is the price you pay. No surprise charges at checkout.</p>
             </div>
           </li>
           <li class="step" data-reveal>
             <span class="step__n">2</span>
             <div>
               <h3 class="step__k">Pay</h3>
-              <p>Pay on the payment provider's secure page. Tap twice by mistake and you're still only charged once.</p>
+              <p>Pay on our partner's secure page. Tapped twice by accident? Still charged once.</p>
             </div>
           </li>
           <li class="step" data-reveal>
             <span class="step__n">3</span>
             <div>
               <h3 class="step__k">Track</h3>
-              <p>Watch your order go from the kitchen to your block. If anything's missing, report it from the order and we'll sort the refund.</p>
+              <p>Watch it go from the kitchen to your block. Something missing? Report it from the order and we'll sort it.</p>
             </div>
           </li>
         </ol>
@@ -355,7 +381,7 @@
             <li class="is-done"><span class="tracker__dot"><svg aria-hidden="true"><use href="#i-check"/></svg></span>Paid</li>
             <li class="is-done"><span class="tracker__dot"><svg aria-hidden="true"><use href="#i-check"/></svg></span>Kitchen accepted</li>
             <li class="is-done"><span class="tracker__dot"><svg aria-hidden="true"><use href="#i-check"/></svg></span>Preparing</li>
-            <li class="is-now"><span class="tracker__dot"></span>Out for delivery<small>Block C, Room 214</small></li>
+            <li class="is-now"><span class="tracker__dot"></span>Out for delivery<small>Cedar Hall, Block C</small></li>
             <li><span class="tracker__dot"></span>Delivered</li>
           </ol>
         </div>
@@ -367,11 +393,11 @@
   <section class="band" aria-labelledby="band-h">
     <img class="band__img" src="assets/img/rider.webp" width="1100" height="784" loading="lazy" alt="">
     <div class="wrap band__in">
-      <h2 id="band-h" class="band__title">Hostel. Block. Room.<br><em>We'll find you.</em></h2>
+      <h2 id="band-h" class="band__title">Hostel or gate,<br><em>we'll call you.</em></h2>
       <div class="band__chips" aria-label="Delivery details we ask for">
-        <span>University</span><span>Hostel</span><span>Block</span><span>Room</span><span>Phone</span>
+        <span>University</span><span>Hostel</span><span>Block</span><span>Phone</span>
       </div>
-      <p class="band__note">Choose each one from a list once and it's saved for every order after.</p>
+      <p class="band__note">Our riders get as close as your school allows. If security stops them at the gate, your phone rings and you come out. Simple.</p>
     </div>
   </section>
 
@@ -380,9 +406,9 @@
     <div class="wrap">
       <div class="campus" data-reveal>
         <div class="campus__copy">
-          <p class="eyebrow"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg> Rolling out campus by campus</p>
+          <p class="eyebrow"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg> Coming to more campuses</p>
           <h2 id="campus-h" class="h2">Is your campus <em>on Supernova?</em></h2>
-          <p class="lede">We're starting with a few universities and adding more each month. Tell us where you study and we'll message you when we arrive.</p>
+          <p class="lede">We're starting with a few universities and adding more every month. Tell us where you study and we'll shout when we land.</p>
         </div>
         <form class="campus__form" data-waitlist="campus" novalidate>
           <div class="field">
@@ -393,7 +419,7 @@
             <label for="cp-email">Email</label>
             <input id="cp-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@university.edu.ng" required>
           </div>
-          <button class="btn btn--loud btn--block" type="submit">Put my campus on the list</button>
+          <button class="btn btn--loud btn--block" type="submit">Bring Supernova to my campus</button>
           <p class="inline-form__msg" role="status" aria-live="polite"></p>
         </form>
       </div>
@@ -405,28 +431,40 @@
     <div class="wrap faq">
       <div>
         <p class="eyebrow">Good questions</p>
-        <h2 id="faq-h" class="h2">Before <em>you order</em></h2>
+        <h2 id="faq-h" class="h2">You asked, <em>we answered</em></h2>
       </div>
       <div class="faq__list">
         <details class="qa" open>
           <summary>Who runs Supernova?</summary>
-          <p>Supernova is an independent student platform built by 3Projects. Your food is cooked and handled by Crunchies and Roots, the kitchens you already know.</p>
+          <p>Supernova is an independent student platform built by 3Projects. Food comes from Crunchies and Roots, market items from our partner vendors, and dry cleaning from our partner cleaners.</p>
+        </details>
+        <details class="qa">
+          <summary>Will you deliver to my room?</summary>
+          <p>If your school lets our riders in, we'll come to your hostel. If security stops them at the gate, we'll call you to come out and collect. Rules are rules, abeg.</p>
         </details>
         <details class="qa">
           <summary>Can I mix Crunchies and Roots in one order?</summary>
-          <p>Not in one bag. Each kitchen has its own bag and its own checkout, so your food is never held up waiting for the other kitchen. Fill both bags if you like and check each one out.</p>
+          <p>Not in one bag. Each kitchen has its own bag and checkout, so your food never waits on the other kitchen. Fill both if you're that hungry.</p>
+        </details>
+        <details class="qa">
+          <summary>How do market runs work?</summary>
+          <p>Send your list, our partners send a quote, you pay if you're happy, and we deliver. Nothing is charged until you say yes to the price.</p>
+        </details>
+        <details class="qa">
+          <summary>When do I pay for dry cleaning?</summary>
+          <p>After pickup. We count your clothes, confirm the price, then send you a payment link.</p>
         </details>
         <details class="qa">
           <summary>Is it safe to pay?</summary>
-          <p>Your card details go straight to our payment provider's secure page and are never seen or stored by Supernova. An order is only confirmed once the payment provider confirms it.</p>
+          <p>Yes. Card details go straight to our payment partner's secure page. We never see or store them.</p>
         </details>
         <details class="qa">
-          <summary>Something was missing. What now?</summary>
-          <p>Open the order and tap "Report a problem". Choose missing item, wrong order or late order, and we'll review it. Refunds go back to the way you paid.</p>
+          <summary>Something went wrong. Now what?</summary>
+          <p>Open the order and tap "Report a problem". We'll look into it, and if we got it wrong, you get refunded the way you paid.</p>
         </details>
         <details class="qa">
-          <summary>When are flights coming?</summary>
-          <p>Soon. We're setting it up with a licensed travel partner first. Join the flights list above and you'll hear the day it opens.</p>
+          <summary>How do flights work?</summary>
+          <p>Tell us where you're flying from and to, your dates, and any airline you prefer. Within a few hours we send a shortlist of deals. Pick one, pay, done. We can also arrange a concierge pick-up to the airport.</p>
         </details>
       </div>
     </div>
@@ -436,9 +474,9 @@
   <section class="wrap closer" aria-label="Get started">
     <div class="closer__panel" data-reveal>
       <div class="hero__sky" aria-hidden="true"></div>
-      <p class="closer__k">Hungry yet?</p>
+      <p class="closer__k">So, what are we getting you?</p>
       <p class="closer__title">Life <em>Sweet.</em></p>
-      <a class="btn btn--loud" href="food.html">Order food now <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--loud" href="food.html">Order food <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </section>
 </main>

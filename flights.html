@@ -3,21 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Flights, coming soon — Supernova</title>
-  <meta name="description" content="Flights on Supernova are coming soon. Join the list to hear first.">
+  <title>Flights — Supernova</title>
+  <meta name="description" content="Tell Supernova where and when you're flying. Within a few hours you get a shortlist of great deals, plus an optional concierge pick-up to the airport.">
   <meta name="theme-color" content="#1b0b2b">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="css/styles.css?v=5">
-  <link rel="stylesheet" href="css/app.css?v=5">
-  <script src="js/data.js?v=5" defer></script>
-  <script src="js/store.js?v=5" defer></script>
-  <script src="js/ui.js?v=5" defer></script>
-  <script src="js/pages/flights.js?v=5" defer></script>
+  <link rel="stylesheet" href="css/styles.css?v=16">
+  <link rel="stylesheet" href="css/app.css?v=16">
+  <link rel="stylesheet" href="css/services.css?v=16">
+  <script src="js/data.js?v=16" defer></script>
+  <script src="js/store.js?v=16" defer></script>
+  <script src="js/ui.js?v=16" defer></script>
+  <script src="js/address.js?v=16" defer></script>
+  <script src="js/pages/flights.js?v=16" defer></script>
 </head>
-<body data-page="flights">
+<body data-page="flights" data-kitchen="flight">
 <a class="skip" href="#main">Skip to content</a>
 <header class="chrome" data-chrome></header>
 
@@ -28,17 +30,14 @@
       <svg class="fl__path" viewBox="0 0 600 300" preserveAspectRatio="none" aria-hidden="true"><path d="M-10 260 C 150 240, 260 80, 610 40"/></svg>
 
       <div class="fl__copy">
-        <span class="badge badge--soon"><svg class="i" aria-hidden="true"><use href="#i-plane"/></svg>Coming soon</span>
-        <h1 class="fl__title">Boarding <em>soon.</em></h1>
-        <p class="fl__lede">Flights home for the holidays, long weekends and the trip abroad, booked on the same app you order dinner from. We're getting it ready with a licensed travel partner.</p>
-
-        <form class="fl__form" data-fl-form novalidate>
-          <label class="sr-only" for="fl-email">Email address</label>
-          <input id="fl-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@university.edu.ng" required>
-          <button class="btn btn--gold" type="submit">Get early access</button>
-          <p class="inline-form__msg" role="status" aria-live="polite"></p>
-        </form>
-        <p class="fl__fine">We'll only email you about flights opening. No spam.</p>
+        <span class="badge badge--new"><svg class="i" aria-hidden="true"><use href="#i-plane"/></svg>New</span>
+        <h1 class="fl__title">Flights, <em>sorted.</em></h1>
+        <p class="fl__lede">Tell us where and when. Within a few hours we send you a hand-picked shortlist at prices you won't find on your own. Want a ride to the airport too? Done.</p>
+        <div class="hero__cta">
+          <a class="btn btn--gold" href="#request">Find me a flight <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn--ghost" href="#how">How it works</a>
+        </div>
+        <p class="fl__fine">Pay nothing until you pick a flight.</p>
       </div>
 
       <div class="fl__art" aria-hidden="true">
@@ -49,15 +48,15 @@
               <span>Supernova <b>flights</b></span>
             </div>
             <div class="pass__route">
-              <div><span class="pass__code">LOS</span><span class="pass__city">Lagos</span></div>
+              <div><span class="pass__code" data-pass-from-code>PHC</span><span class="pass__city" data-pass-from>Port Harcourt</span></div>
               <span class="pass__plane"><svg class="i"><use href="#i-plane"/></svg></span>
-              <div class="pass__to"><span class="pass__code" data-fl-code>ABV</span><span class="pass__city" data-fl-city>Abuja</span></div>
+              <div class="pass__to"><span class="pass__code" data-pass-to-code>LOS</span><span class="pass__city" data-pass-to>Lagos</span></div>
             </div>
             <dl class="pass__grid">
               <div><dt>Passenger</dt><dd>You</dd></div>
-              <div><dt>Flight</dt><dd>SN 001</dd></div>
+              <div><dt>Depart</dt><dd data-pass-date>Pick a date</dd></div>
               <div><dt>Seat</dt><dd>Window</dd></div>
-              <div><dt>Gate</dt><dd class="pass__soon">Opening soon</dd></div>
+              <div><dt>Price</dt><dd class="pass__soon">Better than usual</dd></div>
             </dl>
           </div>
           <div class="pass__stub">
@@ -70,53 +69,72 @@
     </div>
   </section>
 
-  <section class="wrap section section--tight" aria-labelledby="routes-h">
-    <div class="routes" data-reveal>
-      <div>
-        <p class="eyebrow"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg> Help us plan</p>
-        <h2 id="routes-h" class="h2">Where do you <em>fly most?</em></h2>
-        <p class="lede">Tap the places you travel to. It tells us which routes to open first.</p>
-      </div>
-      <div class="routes__chips" role="group" aria-label="Destinations" data-routes>
-        <button class="chip" type="button" aria-pressed="false" data-code="ABV">Abuja</button>
-        <button class="chip" type="button" aria-pressed="false" data-code="PHC">Port Harcourt</button>
-        <button class="chip" type="button" aria-pressed="false" data-code="ENU">Enugu</button>
-        <button class="chip" type="button" aria-pressed="false" data-code="KAN">Kano</button>
-        <button class="chip" type="button" aria-pressed="false" data-code="QOW">Owerri</button>
-        <button class="chip" type="button" aria-pressed="false" data-code="ACC">Accra</button>
-        <button class="chip" type="button" aria-pressed="false" data-code="LHR">London</button>
-        <button class="chip" type="button" aria-pressed="false" data-code="DXB">Dubai</button>
-        <button class="chip" type="button" aria-pressed="false" data-code="JFK">New York</button>
-        <button class="chip" type="button" aria-pressed="false" data-code="YYZ">Toronto</button>
-      </div>
-    </div>
+  <section class="wrap section section--tight" id="how" aria-labelledby="fhow-h">
+    <h2 id="fhow-h" class="sr-only">How flights work</h2>
+    <ol class="howrow howrow--3">
+      <li class="howcard" data-reveal><span class="howcard__n">1</span><h3>Tell us the trip</h3><p>Where you're leaving from, where you're going, your dates, and any airline you like.</p></li>
+      <li class="howcard" data-reveal><span class="howcard__n">2</span><h3>Get your shortlist</h3><p>Within a few hours our travel team sends you the best deals they can find. Often way below the usual price.</p></li>
+      <li class="howcard" data-reveal><span class="howcard__n">3</span><h3>Pick, pay, fly</h3><p>Choose one and pay. Your e-ticket lands in your email. Add a concierge pick-up and we'll get you to the airport too.</p></li>
+    </ol>
   </section>
 
-  <section class="wrap section section--tight" aria-label="What to expect">
+  <section class="wrap section" id="request" aria-labelledby="req-h">
+    <h2 id="req-h" class="h1">Where are we <em>flying?</em></h2>
+    <div data-request></div>
+  </section>
+
+  <section class="wrap section section--tight" aria-label="Why book with Supernova">
     <div class="expect">
       <article class="promise" data-reveal>
-        <span class="promise__icon promise__icon--gold"><svg class="i" aria-hidden="true"><use href="#i-plane"/></svg></span>
-        <h2 class="promise__k">Home for the holidays</h2>
-        <p>End of semester, mid-term breaks, the long weekend. Search and book in a few taps.</p>
+        <span class="promise__icon promise__icon--gold"><svg class="i" aria-hidden="true"><use href="#i-star"/></svg></span>
+        <h2 class="promise__k">Prices you won't find yourself</h2>
+        <p>Our travel partners get us fares that don't show up on the usual sites. You see the normal price next to ours, so you know what you're saving.</p>
       </article>
       <article class="promise" data-reveal>
-        <span class="promise__icon promise__icon--berry"><svg class="i" aria-hidden="true"><use href="#i-star"/></svg></span>
-        <h2 class="promise__k">One Supernova account</h2>
-        <p>The same login as your food orders. Your trips sit next to your orders.</p>
+        <span class="promise__icon promise__icon--berry"><svg class="i" aria-hidden="true"><use href="#i-bike"/></svg></span>
+        <h2 class="promise__k">Concierge pick-up</h2>
+        <p>Don't stress about getting to the airport with three bags. Add a pick-up and a driver collects you from campus.</p>
       </article>
       <article class="promise" data-reveal>
         <span class="promise__icon promise__icon--mint"><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg></span>
-        <h2 class="promise__k">Booked through a licensed partner</h2>
-        <p>Tickets are issued by an accredited travel agency, so your booking is the real thing.</p>
+        <h2 class="promise__k">Real tickets, real people</h2>
+        <p>Tickets come from an accredited travel agency, and a real person on our team handles your request start to finish.</p>
       </article>
+    </div>
+  </section>
+
+  <section class="wrap section section--tight" aria-labelledby="ffaq-h">
+    <div class="faq">
+      <div>
+        <p class="eyebrow">Good to know</p>
+        <h2 id="ffaq-h" class="h2">Flight <em>questions</em></h2>
+      </div>
+      <div class="faq__list">
+        <details class="qa" open>
+          <summary>How fast do I get options?</summary>
+          <p>Usually within a few hours. Last-minute trips get bumped to the front of the queue.</p>
+        </details>
+        <details class="qa">
+          <summary>Do I pay when I send the request?</summary>
+          <p>No. You only pay once you've picked a flight from your shortlist.</p>
+        </details>
+        <details class="qa">
+          <summary>How is it cheaper than booking myself?</summary>
+          <p>Our travel partners have access to fares that aren't on the public booking sites. We pass those savings straight to you.</p>
+        </details>
+        <details class="qa">
+          <summary>How does the concierge pick-up work?</summary>
+          <p>Tick the box when you request. Once you book, we arrange a driver to collect you from campus in good time for your flight.</p>
+        </details>
+      </div>
     </div>
   </section>
 
   <section class="band band--flights" aria-labelledby="fl-band-h">
     <img class="band__img" src="assets/img/plane-wing.webp" width="1100" height="731" loading="lazy" alt="">
     <div class="wrap band__in">
-      <h2 id="fl-band-h" class="band__title">Until then, <em>dinner's on.</em></h2>
-      <p class="band__note">Crunchies and Roots are delivering to your hostel right now.</p>
+      <h2 id="fl-band-h" class="band__title">Hungry before you fly? <em>Dinner's on.</em></h2>
+      <p class="band__note">Crunchies and Roots are delivering right now.</p>
       <a class="btn btn--loud" href="food.html">Order food <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </section>

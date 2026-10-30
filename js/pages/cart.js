@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!lines.length) {
       return h('div', { class: 'bag-empty' },
-        empty({ title: `Your ${K.name} bag is empty`, body: `${K.tagline} Have a look at the menu and add something good.`, cta: `Browse ${K.name}`, href: `kitchen.html?k=${k}` }),
+        empty({ title: `Your ${K.name} bag is empty`, body: `${K.tagline} Go on, add something good.`, cta: `Browse ${K.name}`, href: `kitchen.html?k=${k}` }),
         otherN ? nudge(other, otherN) : null);
     }
 
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
           h('div', { class: 'sums__total' }, h('dt', { text: 'Total' }), h('dd', { text: money(t.total) }))),
         h('p', { class: 'summary__eta' }, icon('clock'), `Usually arrives in ${K.eta}`),
         h('a', { class: 'btn btn--loud btn--block', href: `checkout.html?k=${k}` }, `Checkout ${K.name}`, icon('arrow')),
-        h('p', { class: 'summary__safe' }, icon('lock'), 'Prices are confirmed again before you pay.')));
+        h('p', { class: 'summary__safe' }, icon('lock'), 'We double-check prices before you pay.')));
   }
 
   function nudge(k, n) {

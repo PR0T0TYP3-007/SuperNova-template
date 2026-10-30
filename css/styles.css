@@ -74,7 +74,7 @@
    Base
    ========================================================================== */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 96px; -webkit-text-size-adjust: 100%; }
+html { overflow-x: clip; scroll-behavior: smooth; scroll-padding-top: 96px; -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   background: var(--cream);
@@ -84,6 +84,7 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  overflow-x: clip;
 }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }

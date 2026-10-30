@@ -27,7 +27,9 @@ document.documentElement.classList.add('js');
     ${S('pin', st('M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z') + '<circle cx="12" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="2.2"/>')}
     ${S('chart', st('M4 20V10M10 20V4M16 20v-7M22 20H2'))}
     ${S('menu', st('M4 7h16M4 12h16M4 17h16'))}
-    ${S('search', '<circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.2"/>' + st('m20 20-4-4'))}
+    ${S('basket', st('M3 10h18l-2 10H5L3 10Z') + st('M8 10l3-6M16 10l-3-6M9 14v3M15 14v3M12 14v3'))}
+    ${S('shirt', st('M8 3 4 6l2 4 2-1v12h8V9l2 1 2-4-4-3a4 4 0 0 1-8 0Z'))}
+    ${S('search','<circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.2"/>' + st('m20 20-4-4'))}
     ${S('flame', st('M12 22c4 0 7-3 7-7 0-5-5-7-5-12-3 2-4 5-4 7-1-1-2-2-2-4-2 2-3 5-3 9 0 4 3 7 7 7Z'))}
     ${S('leaf', st('M5 19c0-9 6-14 15-14 0 9-5 15-14 15') + st('M5 19c3-4 6-6 9-8'))}
     ${S('alert', st('M12 3 2 20h20L12 3Z') + st('M12 10v4M12 17h.01'))}
@@ -82,7 +84,7 @@ document.documentElement.classList.add('js');
 
   // ---- Header ---------------------------------------------------------------
   const page = document.body.dataset.page;
-  const NAV = [['home', 'index.html', 'Home'], ['food', 'food.html', 'Food'], ['flights', 'flights.html', 'Flights'], ['orders', 'orders.html', 'Orders']];
+  const NAV = [['home', 'index.html', 'Home'], ['food', 'food.html', 'Food'], ['market', 'market.html', 'Market runs'], ['laundry', 'laundry.html', 'Dry cleaning'], ['flights', 'flights.html', 'Flights'], ['orders', 'orders.html', 'Orders']];
   const navLinks = () => NAV.map(([id, href, label]) => h('a', { href, 'aria-current': id === page ? 'page' : null, text: label }));
 
   function renderChrome() {
@@ -132,9 +134,9 @@ document.documentElement.classList.add('js');
       h('div', { class: 'wrap foot__in' },
         h('div', { class: 'foot__brand' },
           logo('mark mark--foot'),
-          h('p', { text: 'Food and flights for students. Life Sweet.' })),
+          h('p', { text: 'Food, market runs, dry cleaning and flights for uni students. Life Sweet.' })),
         h('nav', { class: 'foot__cols', 'aria-label': 'Footer' },
-          col('Supernova', [['food.html', 'Food'], ['flights.html', 'Flights'], ['orders.html', 'Your orders']]),
+          col('Supernova', [['food.html', 'Food'], ['market.html', 'Market runs'], ['laundry.html', 'Dry cleaning'], ['flights.html', 'Flights'], ['orders.html', 'Your orders']]),
           col('Help', [['index.html#faq', 'Questions'], ['#', 'Refund policy'], ['#', 'Contact us']]),
           col('Legal', [['#', 'Privacy policy'], ['#', 'Terms of use']]))),
       h('div', { class: 'wrap foot__base' },
@@ -146,7 +148,7 @@ document.documentElement.classList.add('js');
   function toast(msg, link) {
     let t = document.querySelector('[data-toast]');
     if (!t) { t = h('div', { class: 'toast', role: 'status', 'aria-live': 'polite', 'data-toast': true }); document.body.append(t); }
-    t.replaceChildren(icon('check'), h('span', { text: msg }), link ? h('a', { href: link.href, text: link.label }) : null);
+    t.replaceChildren(icon('check'), h('span', { text: msg }), ...(link ? [h('a', { href: link.href, text: link.label })] : []));
     t.hidden = false;
     t.style.animation = 'none';
     void t.offsetWidth;
@@ -181,7 +183,75 @@ document.documentElement.classList.add('js');
       cta ? h('a', { class: 'btn btn--primary', href }, cta, icon('arrow')) : null);
   }
 
-  SN.ui = { h, icon, money, img, param, kitchenOr, when, tag, toast, bump, reveal, empty };
+  // ---- Payment stand-in -----------------------------------------------------
+  // Stands in for the payment provider's hosted page. In production the app
+  // redirects there, and only the verified webhook marks anything paid.
+  function pay({ amount, label, busy, onSuccess, onFail }) {
+    if (busy) busy.disabled = true;
+    let locked = false;
+    const body = h('div', { class: 'prov__body' });
+    const dlg = h('dialog', { class: 'prov', 'aria-labelledby': 'prov-t' },
+      h('div', { class: 'prov__bar' }, icon('lock'), h('span', { text: 'Secure payment' }), h('span', { class: 'prov__test', text: 'Sandbox' })),
+      body);
+    const done = ok => {
+      if (locked) return;
+      if (!ok) { dlg.close(); onFail && onFail(); return; }
+      locked = true;
+      body.replaceChildren(h('div', { class: 'prov__wait' }, h('span', { class: 'spinner', 'aria-hidden': 'true' }), h('p', { class: 'prov__t', id: 'prov-t', text: 'Confirming your payment…' }), h('p', { text: 'Hang tight, this takes a second.' })));
+      setTimeout(() => { onSuccess(); if (dlg.open) dlg.close(); }, 1400);
+    };
+    body.append(
+      h('p', { class: 'prov__merchant', text: label }),
+      h('p', { class: 'prov__amt', id: 'prov-t', text: money(amount) }),
+      h('p', { class: 'prov__note', text: 'This box stands in for the payment provider\'s page while Supernova is in sandbox mode. No real money moves.' }),
+      h('div', { class: 'prov__acts' },
+        h('button', { class: 'btn btn--primary btn--block', type: 'button', onclick: () => done(true) }, icon('check'), 'Simulate successful payment'),
+        h('button', { class: 'btn btn--block', type: 'button', onclick: () => done(false) }, 'Simulate failed payment'),
+        h('button', { class: 'linkish', type: 'button', onclick: () => done(false) }, 'Cancel and go back')));
+    dlg.addEventListener('cancel', e => { e.preventDefault(); done(false); });
+    dlg.addEventListener('close', () => { if (busy) busy.disabled = false; dlg.remove(); });
+    document.body.append(dlg);
+    dlg.showModal();
+  }
+
+  // ---- Order type helpers -----------------------------------------------------
+  // Each order kind gets an accent (via data-kitchen), a tag and a source.
+  const KIND = {
+    market: { name: 'Market run', icon: 'basket' },
+    laundry: { name: 'Dry cleaning', icon: 'shirt' },
+    flight: { name: 'Flight', icon: 'plane' }
+  };
+  const city = code => (SN.AIRPORTS.find(([c]) => c === code) || [code, code])[1];
+  const accentOf = o => (SN.orders.kind(o) === 'food' ? o.kitchen : SN.orders.kind(o));
+  const orderTag = o => {
+    const k = SN.orders.kind(o);
+    if (k === 'food') return tag(o.kitchen);
+    return h('span', { class: `tag tag--${k}` }, icon(KIND[k].icon), KIND[k].name);
+  };
+  const orderFrom = o => ({ food: () => SN.KITCHENS[o.kitchen].name, market: () => 'Partners', laundry: () => 'Cleaners', flight: () => city(o.from) })[SN.orders.kind(o)]();
+  const orderThumbs = o => ({
+    food: () => o.items.slice(0, 3).map(i => img(i.img)),
+    market: () => [img('market-tomatoes-basket'), img('market-peppers')],
+    laundry: () => [img('laundry-folded'), img('laundry-suits')],
+    flight: () => [img('plane-window'), img('plane-sky')]
+  })[SN.orders.kind(o)]();
+  const orderTitle = o => {
+    const k = SN.orders.kind(o);
+    if (k === 'market') return `${o.items.length} item${o.items.length === 1 ? '' : 's'} from our partners`;
+    if (k === 'flight') return `${city(o.from)} to ${city(o.to)}, ${o.trip === 'return' ? 'return' : 'one way'}`;
+    return o.items.map(i => `${i.qty > 1 ? i.qty + '× ' : ''}${i.name}`).join(', ');
+  };
+  // "Cedar Hall, Block C, Room 214" (room is optional).
+  const addrLine = a => [a.hostel, a.block && `Block ${a.block}`, a.room && `Room ${a.room}`].filter(Boolean).join(', ');
+
+  // Show a mobile pay bar only while its form is on screen.
+  function barFollows(bar, target) {
+    if (!('IntersectionObserver' in window)) return;
+    bar.hidden = true;
+    new IntersectionObserver(([en]) => { bar.hidden = !en.isIntersecting; }, { rootMargin: '0px 0px -30% 0px' }).observe(target);
+  }
+
+  SN.ui = { barFollows, h, icon, money, img, param, kitchenOr, when, tag, toast, bump, reveal, empty, pay, accentOf, orderTag, orderFrom, orderThumbs, orderTitle, addrLine, city };
 
   renderChrome();
   renderFoot();

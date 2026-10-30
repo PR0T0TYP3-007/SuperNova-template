@@ -14,6 +14,8 @@ Plain HTML, CSS and JavaScript. No build step.
 | Bags (one per kitchen) | `cart.html` |
 | Checkout | `checkout.html?k=…` |
 | Order tracking | `order.html?id=…` |
+| Market runs (foodstuff lists from Umuahia and Aba, quoted by partners) | `market.html` |
+| Dry cleaning (pickup booking) | `laundry.html` |
 | Orders | `orders.html` |
 | Flights (coming soon) | `flights.html` |
 
@@ -32,4 +34,10 @@ Then open http://localhost:8137.
 - Crunchies and Roots items never share a bag. Each kitchen has its own bag and checkout.
 - After changing CSS or JS, bump the `?v=` number on the links in each HTML file so browsers fetch the new files.
 
-Photos from [Unsplash](https://unsplash.com).
+## Photos
+
+Most photos are from [Unsplash](https://unsplash.com). The market photos are from Wikimedia Commons:
+
+- Ariaria Market, Aba: by Nyerougo, [CC0](https://commons.wikimedia.org/wiki/File:Ariaria_International_Market.webp)
+- Umuahia Market: cropped from "Umuahia montage" by Ukabia, [CC BY-SA 3.0](https://commons.wikimedia.org/wiki/File:Umuahia_montage.jpg). The cropped image (`assets/img/market-umuahia.webp`) is shared under the same licence.
+- Tomato basket: "The Beauty of Fresh Tomatoes in Nigeria" by Frankincense Diala, [CC BY-SA 4.0](https://commons.wikimedia.org/wiki/File:The_Beauty_of_Fresh_Tomatoes_in_Nigeria.jpg)

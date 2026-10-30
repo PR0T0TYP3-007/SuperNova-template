@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         h('li', null, icon('star'), `Open ${K.hours}`)),
       h('a', { class: 'switch', href: `kitchen.html?k=${other}` }, `Switch to ${O.name}`, icon('arrow'))),
     h('figure', { class: 'frame khero__frame' }, h('img', { src: K.hero, alt: K.alt, width: 1100, height: 733 })),
-    h('p', { class: 'khero__note' }, icon('bag'), `${K.name} has its own bag. ${O.name} items go in a separate one.`));
+    h('p', { class: 'khero__note' }, icon('bag'), `${K.name} has its own bag. Anything from ${O.name} goes in a separate one.`));
 
   // ---- Category nav --------------------------------------------------------
   const sections = [{ id: 'top', name: 'Most ordered' }, ...M.categories];

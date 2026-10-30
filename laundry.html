@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en-NG">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dry cleaning — Supernova</title>
+  <meta name="description" content="Book a pickup from your hostel. Our partner cleaners wash, press and return your clothes.">
+  <meta name="theme-color" content="#1b0b2b">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css?v=16">
+  <link rel="stylesheet" href="css/app.css?v=16">
+  <link rel="stylesheet" href="css/services.css?v=16">
+  <script src="js/data.js?v=16" defer></script>
+  <script src="js/store.js?v=16" defer></script>
+  <script src="js/ui.js?v=16" defer></script>
+  <script src="js/address.js?v=16" defer></script>
+  <script src="js/pages/laundry.js?v=16" defer></script>
+</head>
+<body data-page="laundry" data-kitchen="laundry">
+<a class="skip" href="#main">Skip to content</a>
+<header class="chrome" data-chrome></header>
+
+<main id="main">
+  <section class="wrap">
+    <div class="svc-hero">
+      <div class="svc-hero__sky" aria-hidden="true"></div>
+      <div class="svc-hero__copy">
+        <p class="svc-hero__kicker"><span class="badge badge--new">New</span> Dry cleaning</p>
+        <h1 class="svc-hero__title">Clean clothes, <em>zero wahala.</em></h1>
+        <p class="svc-hero__lede">We pick up from your hostel, our partner cleaners wash and press everything, and it comes back fresh in two days. Your Saturday is yours again.</p>
+        <div class="hero__cta">
+          <a class="btn btn--loud" href="#book">Book a pickup <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn--ghost" href="#prices">See prices</a>
+        </div>
+      </div>
+      <div class="svc-hero__art" aria-hidden="true">
+        <figure class="polaroid polaroid--a">
+          <img src="assets/img/laundry-suits.webp" width="1000" height="667" alt="">
+          <figcaption>Pressed and ready</figcaption>
+        </figure>
+        <figure class="polaroid polaroid--b">
+          <img src="assets/img/laundry-folded.webp" width="900" height="600" alt="">
+        </figure>
+        <figure class="polaroid polaroid--c">
+          <img src="assets/img/laundry-cleaner.webp" width="700" height="1048" alt="">
+        </figure>
+        <span class="sticker sticker--partners">Back in 48 hours</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section section--tight" aria-labelledby="lhow-h">
+    <h2 id="lhow-h" class="sr-only">How dry cleaning works</h2>
+    <ol class="howrow howrow--3">
+      <li class="howcard" data-reveal><span class="howcard__n">1</span><h3>Book a pickup</h3><p>Tell us roughly what's going in and when to come. Takes a minute.</p></li>
+      <li class="howcard" data-reveal><span class="howcard__n">2</span><h3>We collect and count</h3><p>A rider meets you at your hostel, or the gate if security insists. We count everything and send you the final price.</p></li>
+      <li class="howcard" data-reveal><span class="howcard__n">3</span><h3>Fresh, folded, back</h3><p>Washed, pressed and returned in about 48 hours. Need it tomorrow? Go express.</p></li>
+    </ol>
+  </section>
+
+  <section class="wrap section" id="book" aria-labelledby="book-h">
+    <div class="section__head" id="prices">
+      <div>
+        <p class="eyebrow"><svg class="i" aria-hidden="true"><use href="#i-shirt"/></svg> Prices</p>
+        <h2 id="book-h" class="h2">What's going <em>in the bag?</em></h2>
+      </div>
+      <p class="lede">Add what you've got. It's an estimate for now; we confirm the price when we pick up.</p>
+    </div>
+    <div data-booking></div>
+  </section>
+
+  <section class="wrap section section--tight" aria-labelledby="lgal-h">
+    <h2 id="lgal-h" class="sr-only">Our partners at work</h2>
+    <div class="strip" data-reveal>
+      <img src="assets/img/laundry-ironing.webp" width="900" height="600" loading="lazy" alt="A shirt being ironed on a patterned board">
+      <img src="assets/img/laundry-cleaner.webp" width="700" height="1048" loading="lazy" alt="A cleaner working among bagged garments">
+      <img src="assets/img/laundry-basket.webp" width="800" height="534" loading="lazy" alt="A basket of laundry ready to go">
+    </div>
+  </section>
+
+  <section class="wrap section section--tight" aria-labelledby="lfaq-h">
+    <div class="faq">
+      <div>
+        <p class="eyebrow">Good to know</p>
+        <h2 id="lfaq-h" class="h2">Laundry <em>questions</em></h2>
+      </div>
+      <div class="faq__list">
+        <details class="qa" open>
+          <summary>When do I pay?</summary>
+          <p>After pickup. We count your items, confirm the price, and send you a payment link. No surprises.</p>
+        </details>
+        <details class="qa">
+          <summary>How long does it take?</summary>
+          <p>About 48 hours. Express gets it back the next day for a small extra fee.</p>
+        </details>
+        <details class="qa">
+          <summary>Can you do native wear and agbada?</summary>
+          <p>Yes, and carefully. They go to our partner's dry clean line, not the regular wash.</p>
+        </details>
+        <details class="qa">
+          <summary>What if something gets damaged?</summary>
+          <p>Report it from your order within 24 hours of delivery and we'll sort it out with the cleaner.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot" data-foot></footer>
+</body>
+</html>
